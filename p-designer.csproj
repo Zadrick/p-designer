@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>p_designer</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ui\**" />
+    <Content Remove="ui\**" />
+    <EmbeddedResource Remove="ui\**" />
+    <None Remove="ui\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="controllers\" />
+	<Folder Include="entities\" />
+	<Folder Include="models\" />
+	<Folder Include="services\" />
+  </ItemGroup>
+
+</Project>
