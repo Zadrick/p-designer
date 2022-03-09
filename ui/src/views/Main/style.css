@@ -47,20 +47,10 @@
 }
 .sidebar {
     width: 300px;
-    background-color: #fff;
     border-radius: 8px;
     margin: 0 10px;
 }
 .sidebar h2 {
     font-size: 25px;
     line-height: 28px;
-}
-.sidebar__criteria {
-    margin: 15px 0;
-}
-.sidebar__project {
-    margin: 15px 0;
-}
-.sidebar__buttons {
-    margin: 15px 0;
 }

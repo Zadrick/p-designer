@@ -1,0 +1,141 @@
+.sidebar__criteria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 350px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+.sidebar__criteria h2 {
+    margin: 0;
+    padding: 20px 0 10px 0;
+}
+.criteria {
+    width: 245px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.criteria__item {
+    display: flex;
+    width: 245px;
+    height: 28px;
+}
+.criteria__type {
+    text-align: left;
+    margin-left: 10px;
+    width: 70px;
+}
+.criteria__value {
+    display: flex;
+    align-items: center;
+}
+.criteria__value_button  {
+    border: 2px solid #333333;
+    box-sizing: border-box;
+    border-radius: 25px;
+    font-size: 10px;
+    line-height: 14px;
+    color: #333333;
+    background-color: #fff;
+    padding: 0px 10px;
+    height: 19px;
+    margin: 2px;
+}
+.criteria__value_button.active {
+    background: #E5E5E5;
+}
+.criteria__border {
+    border-top: 0.5px solid #C4C4C4;
+    border-bottom: 0.5px solid #C4C4C4;
+}
+
+
+.slidecontainer {
+    position: relative;
+    width: 245px;
+    height: 100px;
+}
+.slidecontainer .slider {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    width: 245px;
+    height: 16px;
+    background: #C4C4C4;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.slidecontainer .slider::-webkit-slider-runnable-track {
+    background: #C4C4C4;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.slidecontainer .slider::-moz-range-track {
+    background: #333;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.slidecontainer .slider::-webkit-slider-thumb {
+    background-color: #000000;
+    cursor: pointer;
+}
+.slidecontainer .slider::-moz-range-thumb {
+    cursor: pointer;
+    background-color: #000000;
+}
+.slidecontainer .min {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 44px;
+    height: 26px;
+    border: 2px solid #333333;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background: #FFFFFF;
+}
+.slidecontainer .max {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 44px;
+    height: 26px;
+    border: 2px solid #333333;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background: #FFFFFF;
+}
+.slidecontainer .value {
+    position: absolute;
+    bottom: 0;
+    width: 44px;
+    height: 26px;
+    border: 2px solid #333333;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background: #FFFFFF;
+}
+
+
+
+
+
+.edit__criteria {
+    width: 200px;
+    height: 38px;
+    background: #FFFFFF;
+    border: 2px solid #333333;
+    box-sizing: border-box;
+    border-radius: 32px;
+    font-size: 15px;
+    line-height: 22px;
+    color: #333333;
+    margin-top: auto;
+    margin-bottom: 20px;
+}
