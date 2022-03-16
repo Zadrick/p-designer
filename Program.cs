@@ -1,6 +1,10 @@
+using p_designer.entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var start = new PDesignerContext();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
