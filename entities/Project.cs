@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using p_designer.entities;
-using p_designer.models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace p_designer.entities
 {
@@ -11,6 +8,7 @@ namespace p_designer.entities
         {
             Components = new HashSet<Component>();
             Libraries = new HashSet<Library>();
+            ValidationStatuses = new HashSet<ValidationStatus>();
         }
 
         [Key]
@@ -20,8 +18,9 @@ namespace p_designer.entities
         public double Value { get; set; }
         public double Rating { get; set; }
         public int Cost { get; set; }
-        [Required]
-        public LifecycleStatusEnum LifecycleStatus { get; set; }
+        public Pattern Pattern { get; set; }
+        public LifecycleStatus LifecycleStatus { get; set; }
+        public ICollection<ValidationStatus> ValidationStatuses { get; set; }
         public ICollection<Component> Components { get; set; }
         public ICollection<Library> Libraries { get; set; }
     }

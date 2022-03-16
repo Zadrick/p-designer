@@ -5,6 +5,11 @@ namespace p_designer.entities
 {
     public class Property
     {
+        public Property()
+        {
+            Components = new HashSet<Component>();
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]
@@ -12,5 +17,6 @@ namespace p_designer.entities
         public double AbsValue { get; set; }
         public double RelValue { get; set; }
         public MeasureUnit MeasureUnit { get; set; }
+        public ICollection<Component> Components { get; set; }
     }
 }

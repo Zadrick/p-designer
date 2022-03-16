@@ -2,13 +2,16 @@
 
 namespace p_designer.entities
 {
-    public class Library
+    public class ComponentLevel
     {
+        public ComponentLevel()
+        {
+            Components = new HashSet<Component>();
+        }
+
         [Key]
         public int Id { get; set; }
-
         public string Name { get; set; }
         public ICollection<Component> Components { get; set; }
-        public ICollection<Project> Projects { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using p_designer.models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace p_designer.entities
 {
@@ -8,7 +7,10 @@ namespace p_designer.entities
         public Component()
         {
             Properties = new HashSet<Property>();
-            Aspects = new HashSet<AspectEnum>();
+            Aspects = new HashSet<AspectLevel>();
+            ComponentLevels = new HashSet<ComponentLevel>();
+            Libraries = new HashSet<Library>();
+            Projects = new HashSet<Project>();
         }
 
         [Key]
@@ -16,8 +18,11 @@ namespace p_designer.entities
         [Required]
         public string Name { get; set; }
         [Required]
-        public LifecycleStatusEnum LifecycleStatus { get; set; }
+        public LifecycleStatus LifecycleStatus { get; set; }
         public ICollection<Property> Properties { get; set; }
-        public ICollection<AspectEnum> Aspects { get; set; }
+        public ICollection<AspectLevel> Aspects { get; set; }
+        public ICollection<ComponentLevel> ComponentLevels { get; set; }
+        public ICollection<Library> Libraries { get; set; }
+        public ICollection<Project> Projects { get; set; }
     }  
 }
