@@ -1,5 +1,5 @@
 import React from 'react';
-import { PatternList, Criteria } from '../../components'
+import { PatternList, Criteria, PatternDetails, OptimizationCriteria, ProjectBlueprints, DesignAspects, RelatedProject } from '../../components'
 import './style.css';
 
 const Main = () => {
@@ -14,29 +14,18 @@ const Main = () => {
         <PatternList />
         <main className='main'>
           <h2>Selected Pattern composition</h2>
-          <div>
-            <div className='pattern__detals'>
-              <h2>Delete the Pattern</h2>
-            </div>
-            <div>
-              <h2>List of Optimization Criteria</h2>
-            </div>
+          <div className='main__content'>
+            <PatternDetails />
+            <OptimizationCriteria />
           </div>
-          <div>
-            <div>
-              <h2>Project Design Aspects</h2>
-            </div>  
-            <div>
-              <h2>List of Related Project Blueprints</h2>
-            </div>          
+          <div div className='main__content'>
+            <DesignAspects />
+            <ProjectBlueprints />          
           </div>
         </main>
         <div className='sidebar'>
           <Criteria />
-          <div className='sidebar__project'>
-            <h2>Related Project Details</h2>
-            <button>Go to the Project</button>
-          </div>
+          <RelatedProject />
           <div className='sidebar__buttons'>
             <button>Save the Pattern</button>
             <button>Delete the Pattern</button>

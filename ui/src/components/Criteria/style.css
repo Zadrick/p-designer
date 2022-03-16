@@ -53,46 +53,14 @@
 
 
 .slidecontainer {
-    position: relative;
     width: 245px;
     height: 100px;
-}
-.slidecontainer .slider {
-    position: absolute;
-    top: 50px;
-    left: 0px;
-    width: 245px;
-    height: 16px;
-    background: #C4C4C4;
-    border: 2px solid #000000;
-    box-sizing: border-box;
-    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
-.slidecontainer .slider::-webkit-slider-runnable-track {
-    background: #C4C4C4;
-    border: 2px solid #000000;
-    box-sizing: border-box;
-    border-radius: 10px;
-}
-.slidecontainer .slider::-moz-range-track {
-    background: #333;
-    border: 2px solid #000000;
-    box-sizing: border-box;
-    border-radius: 10px;
-}
-.slidecontainer .slider::-webkit-slider-thumb {
-    background-color: #000000;
-    cursor: pointer;
-}
-.slidecontainer .slider::-moz-range-thumb {
-    cursor: pointer;
-    background-color: #000000;
-}
-.slidecontainer .min {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+.slidecontainer .input {
     width: 44px;
     height: 26px;
     border: 2px solid #333333;
@@ -100,32 +68,6 @@
     border-radius: 8px;
     background: #FFFFFF;
 }
-.slidecontainer .max {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 44px;
-    height: 26px;
-    border: 2px solid #333333;
-    box-sizing: border-box;
-    border-radius: 8px;
-    background: #FFFFFF;
-}
-.slidecontainer .value {
-    position: absolute;
-    bottom: 0;
-    width: 44px;
-    height: 26px;
-    border: 2px solid #333333;
-    box-sizing: border-box;
-    border-radius: 8px;
-    background: #FFFFFF;
-}
-
-
-
-
-
 .edit__criteria {
     width: 200px;
     height: 38px;

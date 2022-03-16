@@ -35,15 +35,19 @@
 }
 .main {
     width: 790px;
+    height: 100%;
     background-color: #fff;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+
 }
-.main div {
+.main__content {
+    width: 100%;
     display: flex;
+    align-items: start;
+    justify-content: space-around;
 }
 .sidebar {
     width: 300px;
@@ -53,4 +57,28 @@
 .sidebar h2 {
     font-size: 25px;
     line-height: 28px;
+}
+.sidebar__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+.sidebar__buttons button {
+    width: 170px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    line-height: 22px;
+    color: #333333;
+    border: 2px solid #333333;
+    box-sizing: border-box;
+    border-radius: 32px;
+    margin: 5px;
+    cursor: pointer;
 }

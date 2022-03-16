@@ -1,0 +1,95 @@
+.optimization__criteria {
+    h2 {
+        margin: 0;
+    }
+    &_content {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+    }
+    &_names {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        border-bottom: 0.5px solid #C4C4C4;
+        font-size: 15px;
+        line-height: 28px;
+    }
+    &_item {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 24px;
+        border-bottom: 0.5px solid #C4C4C4;
+
+        & .optimization__criteria_name {
+            display: block;
+            width: 120px;
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+            text-decoration-line: underline;
+            font-size: 14px;
+            line-height: 14px;
+            color: #000000;
+        }
+        & .optimization__criteria_type {
+            font-size: 10px;
+            line-height: 10px;
+            height: 16px;
+            border: 1px solid #000;
+            box-sizing: border-box;
+            border-radius: 8px;
+            padding: 2px 2px;
+            background: #E5E5E5;
+        }
+        & .optimization__criteria_target {
+            font-size: 14px;
+            color: #000000;
+        }
+        & .optimization__criteria_min {
+            font-size: 14px;
+            color: #C4C4C4;
+        }
+        & .optimization__criteria_max {
+            font-size: 14px;
+            color: #C4C4C4;
+        }
+    }
+    &_name {
+        width: 120px;
+        padding-left: 10px;
+        text-align: left;
+        display: flex;
+    }
+    &_type {
+        width: 80px;
+        text-align: center;
+    }
+    &_target {
+        width: 40px;
+        text-align: center;
+    }
+    &_min {
+        width: 40px;
+        text-align: center;
+    }
+    &_max {
+        width: 40px;
+        text-align: center;
+    }
+    &_delete {
+        margin-left: auto;
+        margin-right: 11px;
+    }
+    &_null {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 24px;
+        border-bottom: 0.5px solid #C4C4C4;
+    }
+    &_add {
+        margin-right: 9px;
+        height: 17px;
+    }
+}
