@@ -19,14 +19,14 @@ namespace p_designer.services
         public async Task<PatternModel.Read.Long> ReadAsync(int id)
         {
             return await context.Patterns
-                .Where(p => p.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted)
                 .ProjectToType<PatternModel.Read.Long>()
                 .SingleAsync(p => p.Id == id);
         }
 
         public async Task<MetaDataModel<PatternModel.Read.Short>> ReadPageAsync(int page, int pageSize)
         {
-            var data = context.Patterns.ProjectToType<PatternModel.Read.Short>();
+            var data = context.Patterns.Where(p => p.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted)
+                .ProjectToType<PatternModel.Read.Short>();
             var factory = new MetaDataFactory<PatternModel.Read.Short>(data);
             return await factory.CreateAsync(page, pageSize);
         }

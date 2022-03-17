@@ -9,6 +9,9 @@
                 public int Id { get; set; }
                 public string Name { get; set; }
                 public int LifecycleStatusId { get; set; }
+                public double ProjectValueMin { get; set; }
+                public double ProjectValueMax { get; set; }
+                public double ProjectValueTarget { get; set; }
             }
 
             public class Short
@@ -22,6 +25,9 @@
         {
             public string Name { get; set; }
             public int LifecycleStatusId { get; set; }
+            public double ProjectValueMin { get; set; }
+            public double ProjectValueMax { get; set; }
+            public double ProjectValueTarget { get; set; }
         }
 
         public class Update
@@ -29,6 +35,9 @@
             public int Id { get; set; }
             public string Name { get; set; }
             public int LifecycleStatusId { get; set; }
+            public double ProjectValueMin { get; set; }
+            public double ProjectValueMax { get; set; }
+            public double ProjectValueTarget { get; set; }
         }
     }
 }
