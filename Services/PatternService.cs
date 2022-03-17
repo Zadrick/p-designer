@@ -1,7 +1,10 @@
 ﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
+using p_designer.common;
+using p_designer.common.extensions;
 using p_designer.entities;
 using p_designer.Models;
+using p_designer.Models.enums;
 
 namespace p_designer.services
 {
@@ -13,11 +16,19 @@ namespace p_designer.services
             this.context = context;
         }
 
-        public async Task<PatternModel.Read> ReadAsync(int id)
+        public async Task<PatternModel.Read.Long> ReadAsync(int id)
         {
             return await context.Patterns
-                .ProjectToType<PatternModel.Read>()
+                .Where(p => p.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted)
+                .ProjectToType<PatternModel.Read.Long>()
                 .SingleAsync(p => p.Id == id);
+        }
+
+        public async Task<MetaDataModel<PatternModel.Read.Short>> ReadPageAsync(int page, int pageSize)
+        {
+            var data = context.Patterns.ProjectToType<PatternModel.Read.Short>();
+            var factory = new MetaDataFactory<PatternModel.Read.Short>(data);
+            return await factory.CreateAsync(page, pageSize);
         }
 
         public async Task CreateAsync(PatternModel.Create patternModel)
@@ -31,6 +42,13 @@ namespace p_designer.services
         {
             var pattern = patternModel.Adapt<PatternModel.Update>();
             context.Update(pattern);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task RemoveAsync(int id)
+        {
+            var pattern = await context.Patterns.FindAsync(id);
+            pattern.LifecycleStatusId = (int)LifecycleStatusEnum.Deleted;
             await context.SaveChangesAsync();
         }
 
