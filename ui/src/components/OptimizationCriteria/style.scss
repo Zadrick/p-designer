@@ -6,6 +6,8 @@
         display: flex;
         flex-direction: column;
         width: 400px;
+        overflow: auto; 
+        height: 250px;
     }
     &_names {
         display: flex;
@@ -86,6 +88,7 @@
         justify-content: space-between;
         align-items: center;
         height: 24px;
+        padding-left: 10px;
         border-bottom: 0.5px solid #C4C4C4;
     }
     &_add {

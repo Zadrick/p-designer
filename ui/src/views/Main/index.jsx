@@ -1,6 +1,6 @@
 import React from 'react';
 import { PatternList, Criteria, PatternDetails, OptimizationCriteria, ProjectBlueprints, DesignAspects, RelatedProject } from '../../components'
-import './style.css';
+import './style.scss';
 
 const Main = () => {
 

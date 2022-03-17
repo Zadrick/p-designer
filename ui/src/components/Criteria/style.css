@@ -16,11 +16,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-top: 0.5px solid #C4C4C4;
 }
 .criteria__item {
     display: flex;
     width: 245px;
     height: 28px;
+    border-bottom: 0.5px solid #C4C4C4;
 }
 .criteria__type {
     text-align: left;
@@ -45,10 +47,6 @@
 }
 .criteria__value_button.active {
     background: #E5E5E5;
-}
-.criteria__border {
-    border-top: 0.5px solid #C4C4C4;
-    border-bottom: 0.5px solid #C4C4C4;
 }
 
 
@@ -80,4 +78,5 @@
     color: #333333;
     margin-top: auto;
     margin-bottom: 20px;
+    cursor: pointer;
 }
