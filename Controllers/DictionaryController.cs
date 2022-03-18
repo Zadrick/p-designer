@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using p_designer.entities;
-using p_designer.Models;
+using p_designer.models;
 using p_designer.services;
 using Swashbuckle.AspNetCore.Annotations;
 

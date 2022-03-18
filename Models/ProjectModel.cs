@@ -1,7 +1,7 @@
 ﻿using p_designer.entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace p_designer.Models
+namespace p_designer.models
 {
     public class ProjectModel
     {

@@ -1,4 +1,4 @@
-﻿namespace p_designer.Models
+﻿namespace p_designer.models
 {
     public class CharacteristicModel
     {

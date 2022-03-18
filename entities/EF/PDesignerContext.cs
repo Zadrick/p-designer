@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using p_designer.Models.enums;
+using p_designer.models.enums;
 
 namespace p_designer.entities
 {

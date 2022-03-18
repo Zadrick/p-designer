@@ -1,4 +1,4 @@
-﻿namespace p_designer.Models.enums
+﻿namespace p_designer.models.enums
 {
     public enum AspectLevelEnum
     {

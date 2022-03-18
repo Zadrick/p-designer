@@ -1,6 +1,6 @@
 ﻿using Mapster;
 using p_designer.entities;
-using p_designer.Models;
+using p_designer.models;
 
 namespace p_designer.services
 {

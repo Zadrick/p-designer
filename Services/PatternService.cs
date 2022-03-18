@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using p_designer.common;
 using p_designer.common.extensions;
 using p_designer.entities;
-using p_designer.Models;
-using p_designer.Models.enums;
+using p_designer.models;
+using p_designer.models.enums;
 
 namespace p_designer.services
 {
