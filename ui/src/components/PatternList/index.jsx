@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-const arr = ['Standard Pattern', 'newPattern']
+const arr = ['Standard Pattern']
 
 const PatternList = () => {
     const [activePattern, setActivePattern] = React.useState(0)
