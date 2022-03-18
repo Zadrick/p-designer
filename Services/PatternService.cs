@@ -40,8 +40,48 @@ namespace p_designer.services
 
         public async Task UpdateAsync(PatternModel.Update patternModel)
         {
-            var pattern = patternModel.Adapt<PatternModel.Update>();
-            context.Update(pattern);
+            var updatedPattern = patternModel.Adapt<Pattern>();
+
+            var createdProjects = patternModel
+                .CreatedProjects.Select(p =>
+                {
+                    var project = p.Adapt<Project>();
+                    project.PatternId = patternModel.Id;
+                    return project;
+                });
+
+            var deletedProjects = context.Projects.AsNoTracking()
+                .Where(p => patternModel.DeletedProjects.Contains(p.Id));
+
+            var createdCharacteristics = patternModel
+                .CreatedCharacteristics.Select(c =>
+                {
+                    var charact = c.Adapt<Characteristic>();
+                    charact.PatternId = patternModel.Id;
+                    return charact;
+                });
+
+            var updatedCharacteristics = patternModel
+                .UpdatedCharacteristics.Select(c =>
+                {
+                    var charact = c.Adapt<Characteristic>();
+                    charact.PatternId = patternModel.Id;
+                    return charact;         
+                });
+
+            var deletedCharacteristics = context.Characteristics.AsNoTracking()
+                .Where(c => patternModel.DeletedCharacteristics.Contains(c.Id));
+
+            context.UpdateRange(updatedCharacteristics);
+            context.RemoveRange(deletedProjects);
+            await context.AddRangeAsync(createdProjects);
+
+            context.RemoveRange(deletedCharacteristics);
+            await context.AddRangeAsync(createdCharacteristics);
+            
+
+            context.Update(updatedPattern);
+
             await context.SaveChangesAsync();
         }
 

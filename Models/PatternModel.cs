@@ -1,4 +1,6 @@
-﻿namespace p_designer.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace p_designer.Models
 {
     public class PatternModel
     {
@@ -12,6 +14,8 @@
                 public double ProjectValueMin { get; set; }
                 public double ProjectValueMax { get; set; }
                 public double ProjectValueTarget { get; set; }
+                public IEnumerable<ProjectModel.Read.Short> Projects { get; set; }
+                public IEnumerable<CharacteristicModel.Read.Long> Characteristics { get; set; }
             }
 
             public class Short
@@ -38,6 +42,12 @@
             public double ProjectValueMin { get; set; }
             public double ProjectValueMax { get; set; }
             public double ProjectValueTarget { get; set; }
+            public ICollection
+            public IEnumerable<ProjectModel.Create> CreatedProjects { get; set; }
+            public IEnumerable<int> DeletedProjects { get; set; }
+            public IEnumerable<CharacteristicModel.Create> CreatedCharacteristics { get; set; }
+            public IEnumerable<CharacteristicModel.Update> UpdatedCharacteristics { get; set; }
+            public IEnumerable<int> DeletedCharacteristics { get; set; }
         }
     }
 }

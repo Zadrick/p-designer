@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace p_designer.entities
 {
@@ -13,6 +14,8 @@ namespace p_designer.entities
 
         [Key]
         public int Id { get; set; }
+        [ForeignKey(nameof(Pattern))]
+        public int PatternId { get; set; }
         [Required]
         public string Name { get; set; }
         public double Value { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using p_designer.Models.enums;
 
 namespace p_designer.entities
 {
@@ -11,7 +12,7 @@ namespace p_designer.entities
         public DbSet<MeasureUnit> MeasureUnits { get; set; }
         public DbSet<Pattern> Patterns { get; set; }
         public DbSet<Project> Projects { get; set; }
-        public DbSet<Property> Properties { get; set; }
+        public DbSet<PropertyValue> Properties { get; set; }
         public DbSet<ValidationStatus> ValidationStatuses { get; set; }
         public DbSet<LifecycleStatus> LifecycleStatuses { get; set; }
         public DbSet<AspectLevel> AspectLevels { get; set; }
@@ -37,29 +38,29 @@ namespace p_designer.entities
         {
             modelBuilder.Entity<LifecycleStatus>().HasData(new HashSet<LifecycleStatus>
             {
-                new LifecycleStatus() { Id = 1, Name = "Draft" },
-                new LifecycleStatus() { Id = 2, Name = "Ready to use" },
-                new LifecycleStatus() { Id = 3, Name = "Deleted" }
+                new LifecycleStatus() { Id = (int)LifecycleStatusEnum.Draft, Name = "Draft" },
+                new LifecycleStatus() { Id = (int)LifecycleStatusEnum.ReadyToUse, Name = "Ready to use" },
+                new LifecycleStatus() { Id = (int)LifecycleStatusEnum.Deleted, Name = "Deleted" }
             });
 
             modelBuilder.Entity<AspectLevel>().HasData(new HashSet<AspectLevel>()
             {
-                new AspectLevel() { Id = 1, Name = "Business Layer" },
-                new AspectLevel() { Id = 2, Name = "Functional Layer" },
-                new AspectLevel() { Id = 3, Name = "Information Layer" },
-                new AspectLevel() { Id = 4, Name = "Communication Layer" },
-                new AspectLevel() { Id = 5, Name = "Integration Layer" },
-                new AspectLevel() { Id = 6, Name = "Physical Layer" }
+                new AspectLevel() { Id = (int)AspectLevelEnum.BusinessLayer, Name = "Business Layer" },
+                new AspectLevel() { Id = (int)AspectLevelEnum.FunctionalLayer, Name = "Functional Layer" },
+                new AspectLevel() { Id = (int)AspectLevelEnum.InformationLayer, Name = "Information Layer" },
+                new AspectLevel() { Id = (int)AspectLevelEnum.CommunicationLayer, Name = "Communication Layer" },
+                new AspectLevel() { Id = (int)AspectLevelEnum.IntegrationLayer, Name = "Integration Layer" },
+                new AspectLevel() { Id = (int)AspectLevelEnum.PhysicalLayer, Name = "Physical Layer" }
             });
 
             modelBuilder.Entity<ComponentLevel>().HasData(new HashSet<ComponentLevel>()
             {
-                new ComponentLevel() { Id = 1, Name = "Workpiece, Product" },
-                new ComponentLevel() { Id = 2, Name = "Tool, Filed Device" },
-                new ComponentLevel() { Id = 3, Name = "Technological Equipment" },
-                new ComponentLevel() { Id = 4, Name = "Technological Cell" },
-                new ComponentLevel() { Id = 5, Name = "Production Cell" },
-                new ComponentLevel() { Id = 6, Name = "Production System" }
+                new ComponentLevel() { Id = (int)ComponentLevelEnum.Workpiece, Name = "Workpiece, Product" },
+                new ComponentLevel() { Id = (int)ComponentLevelEnum.Tool, Name = "Tool, Filed Device" },
+                new ComponentLevel() { Id = (int)ComponentLevelEnum.TechnologicalEquipment, Name = "Technological Equipment" },
+                new ComponentLevel() { Id = (int)ComponentLevelEnum.TechnologicalCell, Name = "Technological Cell" },
+                new ComponentLevel() { Id = (int)ComponentLevelEnum.ProductionCell, Name = "Production Cell" },
+                new ComponentLevel() { Id = (int)ComponentLevelEnum.ProductionSystem, Name = "Production System" }
             });
         }
     }
