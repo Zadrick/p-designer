@@ -9,6 +9,7 @@ namespace p_designer.entities
         {
             Aspects = new HashSet<Aspect>();
             Characteristics = new HashSet<Characteristic>();
+            Projects = new HashSet<Project>();
         }
 
         [Key]
@@ -22,6 +23,7 @@ namespace p_designer.entities
         public double ProjectValueTarget { get; set; }
         public LifecycleStatus LifecycleStatus { get; set; }
         public ICollection<Characteristic> Characteristics { get; set; }
+        public ICollection<Project> Projects { get; set; }
         public ICollection<Aspect> Aspects { get; set; }
     }
 }
