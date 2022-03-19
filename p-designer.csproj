@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ui\**" />
-    <Content Remove="ui\**" />
-    <EmbeddedResource Remove="ui\**" />
-    <None Remove="ui\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Remove="tsconfig.json" />
   </ItemGroup>
 
