@@ -6,7 +6,7 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 var options = new WebApplicationOptions()
 {
     ContentRootPath = Directory.GetCurrentDirectory(),
-    WebRootPath = Path.Combine("ui", "build"),
+    WebRootPath = Path.Combine("static"),
     
 };
 
