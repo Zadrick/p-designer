@@ -6,7 +6,8 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 var options = new WebApplicationOptions()
 {
     ContentRootPath = Directory.GetCurrentDirectory(),
-    WebRootPath = Path.Combine("ui", "public")
+    WebRootPath = Path.Combine("ui", "build"),
+    
 };
 
 var builder = WebApplication.CreateBuilder(options);
@@ -52,7 +53,15 @@ app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGet("/", async context =>
+    {
+        await Task.Run(() => context.Response.Redirect("index.html"));
+    });
+});
 
 app.MapControllers();
 
