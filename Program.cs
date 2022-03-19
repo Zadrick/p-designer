@@ -3,7 +3,14 @@ using p_designer.entities;
 using p_designer.services;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-var builder = WebApplication.CreateBuilder(args);
+var options = new WebApplicationOptions()
+{
+    ContentRootPath = Directory.GetCurrentDirectory(),
+    WebRootPath = Path.Combine("static"),
+    
+};
+
+var builder = WebApplication.CreateBuilder(options);
 
 // Add services to the container.
 
@@ -27,27 +34,34 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(x =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(x =>
-    {
-        x.SwaggerEndpoint("/swagger/v1/swagger.json", "p-designer API v1");
-        x.DefaultModelExpandDepth(3);
-        x.DefaultModelRendering(ModelRendering.Example);
-        x.DefaultModelsExpandDepth(-1);
-        x.DisplayOperationId();
-        x.DisplayRequestDuration();
-        x.DocExpansion(docExpansion: DocExpansion.None);
-        x.EnableDeepLinking();
-        x.EnableFilter();
-        x.ShowExtensions();
-    });
-}
+    x.SwaggerEndpoint("/swagger/v1/swagger.json", "p-designer API v1");
+    x.DefaultModelExpandDepth(3);
+    x.DefaultModelRendering(ModelRendering.Example);
+    x.DefaultModelsExpandDepth(-1);
+    x.DisplayOperationId();
+    x.DisplayRequestDuration();
+    x.DocExpansion(docExpansion: DocExpansion.None);
+    x.EnableDeepLinking();
+    x.EnableFilter();
+    x.ShowExtensions();
+});
+
+app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGet("/", async context =>
+    {
+        await Task.Run(() => context.Response.Redirect("index.html"));
+    });
+});
 
 app.MapControllers();
 
