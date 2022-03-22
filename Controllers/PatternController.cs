@@ -34,9 +34,9 @@ namespace p_designer.controllers
         [HttpPost]
         [Route("pattern")]
         [SwaggerOperation(Summary = "Создать паттерн")]
-        public async Task CreatePattern(PatternModel.Create pattern)
+        public async Task<int> CreatePattern(PatternModel.Create pattern)
         {
-            await patternService.CreateAsync(pattern);
+            return await patternService.CreateAsync(pattern);
         }
 
         [HttpPut]
