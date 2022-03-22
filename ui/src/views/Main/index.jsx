@@ -1,8 +1,25 @@
 import React from 'react';
-import { PatternList, Criteria, PatternDetails, OptimizationCriteria, ProjectBlueprints, DesignAspects, RelatedProject } from '../../components'
+import { PatternList, 
+        Criteria, 
+        PatternDetails, 
+        OptimizationCriteria, 
+        ProjectBlueprints, 
+        DesignAspects, 
+        RelatedProject } from '../../components'
+import { useStore } from '../../hooks'
 import './style.scss';
 
 const Main = () => {
+
+
+  const { getPattern } = useStore('patternStore')
+  React.useEffect(() => {
+    getPattern(3)
+  }, [])
+
+  // const onPutPatterns = () => {
+
+  // }
 
   return (
     <div className='App_main'>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './style.scss'
 
-const arr = ['Test Project ABC', 'Test Project ABC', 'Test Project ABC', 'Test Project ABC', 'Test Project ABC']
+const arr = []
 
 const ProjectBlueprints = () => {
     const [projectList, setProjectList] = useState(arr)

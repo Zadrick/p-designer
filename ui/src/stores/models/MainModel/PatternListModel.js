@@ -1,7 +1,7 @@
 import { types } from 'mobx-state-tree';
 
 const patternModel = types.model('criteria', {
-    Id: types.optional(types.integer, 0),
+    id: types.optional(types.integer, 0),
     Name: types.optional(types.string, ''),
 })
 

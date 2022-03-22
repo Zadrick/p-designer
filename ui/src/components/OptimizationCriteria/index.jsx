@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import './style.scss'
 
-const arr = ['Project Value', 'Project Value', 'Project Value', 'Project Value']
+const arr = []
 
 const OptimizationCriteria = observer(() => {
     const [criteriaList, setCriteriaList] = useState(arr)
