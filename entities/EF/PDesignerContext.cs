@@ -35,7 +35,7 @@ namespace p_designer.entities
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        { 
             modelBuilder.Entity<LifecycleStatus>().HasData(new HashSet<LifecycleStatus>
             {
                 new LifecycleStatus() { Id = (int)LifecycleStatusEnum.Draft, Name = "Draft" },
@@ -61,6 +61,16 @@ namespace p_designer.entities
                 new ComponentLevel() { Id = (int)ComponentLevelEnum.TechnologicalCell, Name = "Technological Cell" },
                 new ComponentLevel() { Id = (int)ComponentLevelEnum.ProductionCell, Name = "Production Cell" },
                 new ComponentLevel() { Id = (int)ComponentLevelEnum.ProductionSystem, Name = "Production System" }
+            });
+
+            modelBuilder.Entity<Pattern>(e =>
+            {
+                e.Property(p => p.LifecycleStatusId).HasDefaultValue((int)LifecycleStatusEnum.Draft);
+            });
+
+            modelBuilder.Entity<Project>(e =>
+            {
+                e.Property(p => p.LifecycleStatusId).HasDefaultValue((int)LifecycleStatusEnum.Draft);
             });
         }
     }

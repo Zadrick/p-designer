@@ -18,24 +18,36 @@ namespace p_designer.services
 
         public async Task<PatternModel.Read.Long> ReadAsync(int id)
         {
-            return await context.Patterns
-                .ProjectToType<PatternModel.Read.Long>()
-                .SingleAsync(p => p.Id == id);
+            var pattern = (await context.Patterns.AsNoTracking()
+                .Include(p => p.Characteristics)
+                .SingleAsync(p => p.Id == id))
+                .Adapt<PatternModel.Read.Long>();
+
+            if (pattern.LifecycleStatusId == (int)LifecycleStatusEnum.Deleted)
+                throw new Exception("Pattern is deleted.");
+
+            pattern.Projects = context.Projects.AsNoTracking()
+                .Where(p => p.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted)
+                .ProjectToType<ProjectModel.Read.Short>();
+
+            return pattern;
         }
 
         public async Task<MetaDataModel<PatternModel.Read.Short>> ReadPageAsync(int page, int pageSize)
         {
-            var data = context.Patterns.Where(p => p.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted)
+            var data = context.Patterns.AsNoTracking()
+                .Where(p => p.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted)
                 .ProjectToType<PatternModel.Read.Short>();
             var factory = new MetaDataFactory<PatternModel.Read.Short>(data);
             return await factory.CreateAsync(page, pageSize);
         }
 
-        public async Task CreateAsync(PatternModel.Create patternModel)
+        public async Task<int> CreateAsync(PatternModel.Create patternModel)
         {
             var pattern = patternModel.Adapt<Pattern>();
             await context.AddAsync(pattern);
             await context.SaveChangesAsync();
+            return pattern.Id;
         }
 
         public async Task UpdateAsync(PatternModel.Update patternModel)

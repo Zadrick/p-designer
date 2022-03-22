@@ -3,14 +3,8 @@ using p_designer.entities;
 using p_designer.services;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-var options = new WebApplicationOptions()
-{
-    ContentRootPath = Directory.GetCurrentDirectory(),
-    WebRootPath = Path.Combine("static"),
-    
-};
 
-var builder = WebApplication.CreateBuilder(options);
+var builder = WebApplication.CreateBuilder();
 
 // Add services to the container.
 
@@ -49,19 +43,11 @@ app.UseSwaggerUI(x =>
     x.ShowExtensions();
 });
 
-app.UseStaticFiles();
+app.UseCors(c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 app.UseHttpsRedirection();
 
 app.UseRouting();
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGet("/", async context =>
-    {
-        await Task.Run(() => context.Response.Redirect("index.html"));
-    });
-});
 
 app.MapControllers();
 
