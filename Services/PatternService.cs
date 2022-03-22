@@ -63,7 +63,13 @@ namespace p_designer.services
                 });
 
             var deletedProjects = context.Projects.AsNoTracking()
-                .Where(p => patternModel.DeletedProjects.Contains(p.Id));
+                .Where(p => patternModel.DeletedProjects.Contains(p.Id))
+                .AsEnumerable()
+                .Select(d =>
+                {
+                    d.LifecycleStatusId = (int)LifecycleStatusEnum.Deleted;
+                    return d;
+                });
 
             var createdCharacteristics = patternModel
                 .CreatedCharacteristics.Select(c =>
@@ -85,7 +91,7 @@ namespace p_designer.services
                 .Where(c => patternModel.DeletedCharacteristics.Contains(c.Id));
 
             context.UpdateRange(updatedCharacteristics);
-            context.RemoveRange(deletedProjects);
+            context.UpdateRange(deletedProjects);
             await context.AddRangeAsync(createdProjects);
 
             context.RemoveRange(deletedCharacteristics);
@@ -101,6 +107,16 @@ namespace p_designer.services
         {
             var pattern = await context.Patterns.FindAsync(id);
             pattern.LifecycleStatusId = (int)LifecycleStatusEnum.Deleted;
+            var projects = context.Projects.AsNoTracking()
+                .Where(p => p.PatternId == pattern.Id)
+                .AsEnumerable()
+                .Select(p =>
+                {
+                    p.LifecycleStatusId = (int)LifecycleStatusEnum.Deleted;
+                    return p;
+                });
+
+            context.UpdateRange(projects);
             await context.SaveChangesAsync();
         }
 
