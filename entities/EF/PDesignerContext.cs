@@ -17,7 +17,7 @@ namespace p_designer.entities
         public DbSet<LifecycleStatus> LifecycleStatuses { get; set; }
         public DbSet<AspectLevel> AspectLevels { get; set; }
         public DbSet<ComponentLevel> ComponentLevels { get; set; }
-        
+
         public PDesignerContext()
         {
             Database.EnsureCreated();
@@ -35,7 +35,7 @@ namespace p_designer.entities
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        { 
+        {
             modelBuilder.Entity<LifecycleStatus>().HasData(new HashSet<LifecycleStatus>
             {
                 new LifecycleStatus() { Id = (int)LifecycleStatusEnum.Draft, Name = "Draft" },
@@ -63,17 +63,21 @@ namespace p_designer.entities
                 new ComponentLevel() { Id = (int)ComponentLevelEnum.ProductionSystem, Name = "Production System" }
             });
 
-            modelBuilder.Entity<Pattern>(e =>
+            modelBuilder.Entity<LifecycleStatus>().HasMany(l => l.Patterns)
+                .WithOne(p => p.LifecycleStatus).OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<LifecycleStatus>().HasMany(l => l.Projects)
+                .WithOne(p => p.LifecycleStatus).OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Pattern>(p =>
             {
-                e.Property(p => p.LifecycleStatusId).HasDefaultValue((int)LifecycleStatusEnum.Draft);
+                p.Property(p => p.LifecycleStatusId).HasDefaultValue((int)LifecycleStatusEnum.Draft);
             });
 
-            modelBuilder.Entity<Project>(e =>
+            modelBuilder.Entity<Project>(p =>
             {
-                e.Property(p => p.LifecycleStatusId).HasDefaultValue((int)LifecycleStatusEnum.Draft);
+                p.Property(p => p.LifecycleStatusId).HasDefaultValue((int)LifecycleStatusEnum.Draft);
             });
         }
     }
-
-
 }

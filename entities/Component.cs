@@ -23,5 +23,5 @@ namespace p_designer.entities
         public ICollection<ComponentLevel> ComponentLevels { get; set; }
         public ICollection<Library> Libraries { get; set; }
         public ICollection<Project> Projects { get; set; }
-    }  
+    }
 }
