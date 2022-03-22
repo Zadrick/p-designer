@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,21 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ui\**" />
-    <Content Remove="ui\**" />
-    <EmbeddedResource Remove="ui\**" />
-    <None Remove="ui\**" />
+    <Content Remove="tsconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="index.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="controllers\" />
-	<Folder Include="entities\" />
-	<Folder Include="models\" />
-	<Folder Include="services\" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.3.0" />
   </ItemGroup>
 
 </Project>
