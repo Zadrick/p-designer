@@ -1,15 +1,18 @@
-import mainStore from './mainStore'
+// import MainStore from './mainStore'
+import PatternStore from './patternStore'
 
 
 const storesRoot = {
-  mainStore: mainStore.create(),
+  // mainStore: MainStore.create(),
+  patternStore: PatternStore.create(),
 }
 
-export * from './PatternsStore'
-
+// export * from './mainStore'
+export * from './patternStore'
 
 
 export {
   storesRoot as stores,
-  mainStore,
+  // MainStore,
+  PatternStore,
 }
