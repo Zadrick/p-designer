@@ -7,19 +7,20 @@ import { PatternList,
         DesignAspects, 
         RelatedProject } from '../../components'
 import { useStore } from '../../hooks'
+import { observer } from 'mobx-react-lite'
 import './style.scss';
 
-const Main = () => {
+const Main = observer(() => {
 
 
-  const { getPattern } = useStore('patternStore')
+  const { getPattern, isUpdate, putPattern } = useStore('patternStore')
   React.useEffect(() => {
     getPattern(3)
   }, [])
 
-  // const onPutPatterns = () => {
-
-  // }
+  const onPutPatterns = () => {
+    putPattern()
+  }
 
   return (
     <div className='App_main'>
@@ -44,13 +45,13 @@ const Main = () => {
           <Criteria />
           <RelatedProject />
           <div className='sidebar__buttons'>
-            <button>Save the Pattern</button>
+            <button onClick={onPutPatterns}>Save the Pattern</button>
             <button>Delete the Pattern</button>
           </div>
         </div>
       </div>
     </div>
   )
-}
+})
 
 export default Main

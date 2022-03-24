@@ -1,12 +1,12 @@
 import { types } from 'mobx-state-tree';
 
 const criteriaModel = types.model('criteria', {
-    Id: types.optional(types.integer, 0),
-    Name: types.optional(types.string, ''),
-    MinValue: types.optional(types.number, 0),
-    MaxValue: types.optional(types.number, 0),
-    TargetValue: types.optional(types.number, 0),
-    IsMinimization: types.optional(types.boolean, false),
+    id: types.optional(types.integer, 0),
+    name: types.optional(types.string, ''),
+    minValue: types.optional(types.number, 0),
+    maxValue: types.optional(types.number, 0),
+    targetValue: types.optional(types.number, 0),
+    isMinimization: types.optional(types.boolean, false),
 })
 
 const projects = types.model('project', {

@@ -1,23 +1,34 @@
 import React from'react'
 import './style.css'
+import { useStore } from '../../hooks'
+import { observer } from 'mobx-react'
 
-const Criteria = () => {
-    const [maxValue, setMaxValue] = React.useState(2.5)
+
+const Criteria = observer(() => {
+    const { criteriaDetails, setUpdatedNewCharacteristics, setUpdatedOldCharacteristics } = useStore('patternStore')
+    const [maxValue, setMaxValue] = React.useState(0)
     const [minValue, setMinValue] = React.useState(0)
-    const [inputValue, setInputValue] = React.useState(1)
+    const [inputValue, setInputValue] = React.useState(0)
     const [editCriteria, setEditCriteria] = React.useState(false)
     const [editMin, setEditMin] = React.useState(false)
     const [editTarget, setEditTarget] = React.useState(false)
     const [editMax, setEditMax] = React.useState(false)
-    const [criteriaName, setCriteriaName] = React.useState('OEE')
+    const [criteriaName, setCriteriaName] = React.useState('')
     const [isChanged, setIsChanged] = React.useState(false)
-    const [isTypeMax, setIsTypeMax] = React.useState(true)
+    const [isMinimization, setIsMinimization] = React.useState(true)
     const [isValidation, setIsValidation] = React.useState(true)
 
+    React.useEffect(() => {
+        setCriteriaName(criteriaDetails.name)
+        setMaxValue(criteriaDetails.maxValue)
+        setMinValue(criteriaDetails.minValue)
+        setInputValue(criteriaDetails.targetValue)
+        setIsMinimization(criteriaDetails.isMinimization)
+    }, [criteriaDetails])
+
+
     const onChangeInput = e => {
-        console.log(e.target);
         if (/^[0-9.]+$/.test(e.target.value) || e.target.value === '') {
-            console.log(e.target);
             setIsChanged(true)
             if (e.target.name === 'min') {
                 setMinValue(e.target.value)
@@ -26,6 +37,23 @@ const Criteria = () => {
             } else if (e.target.name === 'value') {
                 setInputValue(e.target.value)
             }
+        }
+    }
+
+    const onUpdateCriteria = () => {
+        setIsChanged(false)
+        const updateCriteria = {
+            id: criteriaDetails.id,
+            name: criteriaName,
+            maxValue: +maxValue,
+            minValue: +minValue,
+            targetValue: +inputValue,
+            isMinimization: isMinimization
+        }
+        if (criteriaDetails.id === 0) {
+            setUpdatedNewCharacteristics(criteriaDetails, updateCriteria)
+        } else {
+            setUpdatedOldCharacteristics(updateCriteria)
         }
     }
 
@@ -51,17 +79,17 @@ const Criteria = () => {
                     <div className='criteria__type'>Type:</div>
                     <div className='criteria__value'>
                         <button onClick={() => {
-                            setIsTypeMax(true)
+                            setIsMinimization(false)
                             setIsChanged(true)
                         }} 
-                            className={isTypeMax ? 'criteria__value_button active' : 'criteria__value_button'}>
+                            className={!isMinimization ? 'criteria__value_button active' : 'criteria__value_button'}>
                             Maxmization
                         </button>
                         <button onClick={() => {
-                            setIsTypeMax(false)
+                            setIsMinimization(true)
                             setIsChanged(true)
                         }}
-                            className={isTypeMax ? 'criteria__value_button' : 'criteria__value_button active'}>
+                            className={!isMinimization ? 'criteria__value_button' : 'criteria__value_button active'}>
                             Minimization
                         </button>
                     </div>
@@ -119,9 +147,9 @@ const Criteria = () => {
                     </div>
                 </div>
             </div>
-            {isChanged ? (<button onClick={() => setIsChanged(false)} className='edit__criteria'>Edit Optimization Criteria</button>) : (<></>)}
+            {isChanged ? (<button onClick={() => onUpdateCriteria()} className='edit__criteria'>Edit Optimization Criteria</button>) : (<></>)}
         </div>
     )
-}
+})
 
 export default Criteria

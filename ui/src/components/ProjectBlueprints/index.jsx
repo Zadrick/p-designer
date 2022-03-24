@@ -1,21 +1,25 @@
 import { useState } from 'react'
 import './style.scss'
-
-const arr = []
+import { useStore } from '../../hooks'
 
 const ProjectBlueprints = () => {
-    const [projectList, setProjectList] = useState(arr)
     const [newProject, setNewProject] = useState('')
+    const { pattern, setCreatedProjects, setDeletedProject } = useStore('patternStore')
 
     const addProject = () => {
-        setProjectList([...projectList, newProject])
+        const obj  = {
+            id: 0,
+            name: newProject,
+        }
+        setCreatedProjects(obj)
         setNewProject('')
     }
 
-    const deleteProject = index => {
-        setProjectList(projectList.filter((item, i) => i !== index))
+    const deleteProject = obj => {
+        if (obj.id === 0) {
+            setDeletedProject()
+        }
     }
-
 
     return (
         <div className='project-blueprints'>
@@ -26,9 +30,9 @@ const ProjectBlueprints = () => {
                     <div className="project-blueprints_pattern-name">Patten Name</div>
                     <div className="project-blueprints_rating">Rating</div>
                 </div>
-                {projectList.map((item, i) => (
+                {pattern.projects.map((item, i) => (
                     <div key={i} className="optimization__criteria_item">
-                        <div className="optimization__criteria_name">{item}</div>
+                        <div className="optimization__criteria_name">{item.name}</div>
                         <div className="project-blueprints_pattern-name">Standard Pattern</div>
                         <div className="project-blueprints_rating">3.2</div>
                         <div className="optimization__criteria_edit">

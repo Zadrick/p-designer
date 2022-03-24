@@ -10,11 +10,13 @@
 .pattern__detals_content {
     display: flex;
     flex-direction: column;
+    border-top:0.5px solid #C4C4C4;
 }
 .pattern__detals_item {
     display: flex;
-    height: 22px;
+    height: 24px;
     width: 245px;
+    border-bottom:0.5px solid #C4C4C4;
 }
 .pattern__detals_name {
     text-align: left;
@@ -42,8 +44,4 @@
     width: 17px;
     height: 17px;
     cursor: pointer;
-}
-.pattern__detals_border {
-    border-top:0.5px solid #C4C4C4;
-    border-bottom:0.5px solid #C4C4C4;
 }

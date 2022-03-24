@@ -8,47 +8,90 @@ const PatternStore = types
     _createdCharacteristics: types.optional(types.array(criteriaModel), []),
     _updatedCharacteristics: types.optional(types.array(criteriaModel), []),
     _deletedCharacteristics:  types.optional(types.array(types.number, 0), []),
-    _createdProjects: types.optional(types.array(criteriaModel), []),
+    _createdProjects: types.optional(PatternListModel, []),
     _deletedProjects: types.optional(types.array(types.number, 0), []),
-
+    _criteriaDetails: types.optional(criteriaModel, {}),
+    isUpdate: types.optional(types.boolean, false),
   })
   .actions(self => {
     const apiV = 'https://localhost:44378/'
+
+    const setIsUpdate = boll => {
+      applySnapshot(self.isUpdate, boll)
+    }
 
     const setPatternList = newPatternList => {
         applySnapshot(self._patternList, newPatternList)
     }
 
-    const setPattren = newPattern => {
+    const setPattern = newPattern => {
       applySnapshot(self._pattern, newPattern)
     }
 
+    const renamePattern = newName => {
+      applySnapshot(self._pattern, {...self.pattern, name: newName})
+    }
+
+    const setCriteriaDetails = obj => {
+      applySnapshot(self._criteriaDetails, obj)
+    }
+
     const setCreatedCharacteristics = obj => {
-      applySnapshot(self._createdCharacteristics, [...self._createdCharacteristics, obj])
-      
+      applySnapshot(self._criteriaDetails, obj)
+      applySnapshot(self._createdCharacteristics, [...getSnapshot(self._createdCharacteristics), obj])
+      applySnapshot(self._pattern, {...self._pattern, characteristics: [...getSnapshot(self._pattern.characteristics), obj]})
     }
 
-    const setDeletedCharacteristics = id => {
-      applySnapshot(self._deletedCharacteristics, [...self._deletedCharacteristics, id])
+    const setDeletedOldCharacteristics = obj => {
+      if (self._criteriaDetails.id === obj.id) {
+        setCriteriaDetails({})
+      }
+      applySnapshot(self._deletedCharacteristics, [...self._deletedCharacteristics, obj.id])
+      applySnapshot(self._pattern, {...self._pattern, 
+        characteristics: self._pattern.characteristics.filter(item => item.id !== obj.id)})
     }
 
-    const setUpdatedCharacteristics = obj => {
+    const setDeletedNewCharacteristics = obj => {
+      if (self._criteriaDetails.name === obj.name) {
+        setCriteriaDetails({})
+      }
+      applySnapshot(self._pattern, {...self._pattern, 
+        characteristics: self._pattern.characteristics.filter(item => item.name !== obj.name)})
+      applySnapshot(self._createdCharacteristics, getSnapshot(self._createdCharacteristics).filter(item => item.name !== obj.name))
+    }
+
+    const setUpdatedOldCharacteristics = obj => {
+      applySnapshot(self._pattern, {...self._pattern, 
+        characteristics: self._pattern.characteristics.filter(item => item.id !== obj.id)})
+      applySnapshot(self._pattern, {...self._pattern, characteristics: [...getSnapshot(self._pattern.characteristics), obj]})
       applySnapshot(self._updatedCharacteristics, [...self._updatedCharacteristics, obj])
     }
-    
-    const setCreatedProjects = () => {
 
+    const setUpdatedNewCharacteristics = (oldObj, newObj) => {
+      setDeletedNewCharacteristics(oldObj)
+      setCreatedCharacteristics(newObj)
+    }
+    
+    const setCreatedProjects = obj => {
+      console.log(obj);
+      applySnapshot(self._createdProjects, [...getSnapshot(self._createdProjects), obj])
+      applySnapshot(self._pattern, {...self._pattern, projects: [...getSnapshot(self._pattern.projects), obj]})
     }
 
-    const setDeletedProjects = id => {
-      applySnapshot(self._deletedProjects, [...self._deletedProjects, id])
+    const setDeletedNewProjects = obj => {
+      applySnapshot(self._pattern, {...self._pattern, projects: self._pattern.projects.filter(item => item.name !== obj.name)})
+    }
+
+    const setDeletedOldProjects = obj => {
+      applySnapshot(self._deletedProjects, [...self._deletedProjects, obj.id])
+      applySnapshot(self._pattern, {...self._pattern, projects: self._pattern.projects.filter(item => item.id !== obj.id)})
     }
 
     const getPatternList = async () => {
       try {
-        const res = await fetch(`${apiV}api/patterns`).then(res => res.json())
+        const res = await fetch(`${apiV}api/patterns?page=1&pageSize=120`).then(res => res.json())
 
-        setPattren(res)
+        setPatternList(res.data)
       } catch (e) {
         console.log(e)
       }
@@ -58,7 +101,7 @@ const PatternStore = types
       try {
         const res = await fetch(`${apiV}api/pattern?id=${id}`).then(res => res.json())
 
-        setPatternList(res)
+        setPattern(res)
       } catch (e) {
         console.log(e)
       }
@@ -78,7 +121,21 @@ const PatternStore = types
       }
     }
 
-    const putPattern = async obj => {
+    const putPattern = async () => {
+      const obj = {
+        id: self._pattern.id,
+        name: self._pattern.name,
+        lifecycleStatusId: self._pattern.lifecycleStatusId,
+        projectValueMin: self._pattern.projectValueMin,
+        projectValueMax: self._pattern.projectValueMax,
+        projectValueTarget: self._pattern.projectValueTarget,
+        createdProjects: self._createdProjects,
+        deletedProjects: self._deletedProjects,
+        createdCharacteristics: self._createdCharacteristics,
+        updatedCharacteristics: self._updatedCharacteristics,
+        deletedCharacteristics: self._deletedCharacteristics,
+      }
+
       try {
         const res = await fetch(`${apiV}api/pattern`, {
           method: 'PUT',
@@ -104,25 +161,39 @@ const PatternStore = types
       }
     }
 
-
-
-
-
     return {
         getPatternList,
         getPattern,
         putPattern,
         postPattern,
-        setDeletedProjects,
-        setDeletedCharacteristics,
+        setDeletedNewProjects,
+        setDeletedOldProjects,
+        setDeletedNewCharacteristics,
+        setDeletedOldCharacteristics,
+        setUpdatedNewCharacteristics,
+        setUpdatedOldCharacteristics,
         setCreatedCharacteristics,
+        setCreatedProjects,
+        setCriteriaDetails,
+        removePattern,
+        renamePattern,
+        setIsUpdate,
     }
 
   })
   .views(self => ({
     get patternList() {
         return getSnapshot(self._patternList)
-    }
+    },
+    get pattern() {
+      return getSnapshot(self._pattern)
+    },
+    get criteriaDetails() {
+      return getSnapshot(self._criteriaDetails)
+    },
+    get createdCharacteristics() {
+      return getSnapshot(self._createdCharacteristics)
+    },
   }))
 
 export default PatternStore
