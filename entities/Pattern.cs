@@ -14,8 +14,10 @@ namespace p_designer.entities
 
         [Key]
         public int Id { get; set; }
+
         [ForeignKey(nameof(LifecycleStatus))]
         public int LifecycleStatusId { get; set; }
+
         [Required]
         public string Name { get; set; }
         public double ProjectValueMax { get; set; }
