@@ -1,34 +1,40 @@
 import React from 'react'
 import './style.css'
 import { useStore } from '../../hooks'
+import ModalCreate from '../ModalCreate'
+import { observer } from 'mobx-react'
 
-const arr = []
+const PatternList = observer(() => {
+    const { postPattern, patternList, getPatternList, setActivePettern, activePattern } = useStore('patternStore')
+    const [isCreateModal, setCreateModal] = React.useState(false)
 
-const PatternList = () => {
-    const { postPattren } = useStore('patternStore')
-    const [activePattern, setActivePattern] = React.useState(0)
-    const [count, setCount] = React.useState(1)
-    const [pattrens, setPattrens] = React.useState(arr)
+    React.useEffect(() => {
+        getPatternList()
+    }, [])
 
-    const addNewPattern = () => {
-        setPattrens([...pattrens, `New Pattern ${count}`])
-        postPattren([...pattrens, `New Pattern ${count}`])
-        setCount(count + 1)
-        setActivePattern(pattrens.length)
+    const addNewPattern = patternName => {
+        postPattern(patternName)
+    }
+
+    const onClickPattern = id => {
+        setActivePettern(id)
     }
 
     return (
+        <>
         <aside className='sidebar patterns'>
             <h2>Templates Palette</h2>
             <div className='patternList'>
-                {pattrens.length > 0 && pattrens.map((item, i) => (
-                    i === activePattern ?  (<span className='active' key={item}>{item}</span>) 
-                    : (<span onClick={() => setActivePattern(i)} key={item}>{item}</span>)
+                {patternList.map((item, i) => (
+                    item.id === activePattern ?  (<span className='active' key={item.id}>{item.name}</span>) 
+                    : (<span onClick={() => onClickPattern(item.id)} key={item.id}>{item.name}</span>)
                 ))}
             </div>
-            <button onClick={() => addNewPattern()} className='button_createPattern'>+ Create New Pattern</button>
+            <button onClick={() => setCreateModal(true)} className='button_createPattern'>+ Create New Pattern</button>
         </aside>
+        {isCreateModal ? <ModalCreate title="A New Project Pattern" inputName="Pattern Name" saveFunc={addNewPattern} disardFunc={setCreateModal} /> : (<></>)}
+        </>
     )
-}
+})
 
 export default PatternList

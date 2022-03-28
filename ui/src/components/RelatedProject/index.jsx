@@ -1,34 +1,44 @@
 import './style.scss'
+import { useStore } from '../../hooks'
+import { observer } from 'mobx-react-lite'
 
-const RelatedProject = () => {
+const RelatedProject = observer(() => {
+    const { projectsDetails, pattern } = useStore('patternStore')
+
+    console.log(projectsDetails);
+
     return (
         <div className='related-project'>
             <h2>Related Project Details</h2>
-            <div className='pattern__detals_content pattern__detals_border'>
+            <div className='pattern__detals_content'>
                 <div className='pattern__detals_item'>
-                    <div className='pattern__detals_name'>Pattern Name:</div>
-                    <div className="pattern__detals_value">Standard Pattern</div>
-                </div>
-                <div className='pattern__detals_item pattern__detals_border'>
-                    <div className='pattern__detals_name'>Author:</div>
-                    <div className="pattern__detals_value">Oman Abyshev</div>
-                </div>
-                <div className='pattern__detals_item'>
-                    <div className='pattern__detals_name'>Last Update:</div>
-                    <div className="pattern__detals_value">3/3/2022</div>
-                </div>
-                <div className='pattern__detals_item pattern__detals_border'>
-                    <div className='pattern__detals_name'>Created:</div>
-                    <div className="pattern__detals_value">3/3/2022</div>
+                    <div className='pattern__detals_name'>Project Name:</div>
+                    <div className="pattern__detals_value">{projectsDetails.name}</div>
                 </div>
                 <div className='pattern__detals_item'>
                     <div className='pattern__detals_name'>Status:</div>
-                    <div className="pattern__detals_value">Ready to use</div>
+                    <div className="pattern__detals_value">
+                        <select>
+                            {pattern.lifecycleStatusId === 1 ? 
+                                (<>
+                                    <option value={1}>Draft</option>
+                                    <option value={2}>Ready to use</option>
+                                </>)
+                                : (<>
+                                    <option value={2}>Ready to use</option>
+                                    <option value={1}>Draft</option>
+                                </>)}
+                        </select>
+                    </div>
+                </div>
+                <div className='pattern__detals_item'>
+                    <div className='pattern__detals_name'>Rating:</div>
+                    <div className="pattern__detals_value">{projectsDetails.rating}</div>
                 </div>
             </div>
             <button>Go to the Project</button>
         </div>
     )
-}
+})
 
 export default RelatedProject

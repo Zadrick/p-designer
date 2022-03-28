@@ -2,7 +2,7 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import './style.css'
 
-const ToggleSwitch = ({ defaultValue = false, }) => {
+const ToggleSwitch = ({ defaultValue = true, }) => {
   const [isOn, setIsOn] = useState(defaultValue)
 
   const handleToggle = () => {
