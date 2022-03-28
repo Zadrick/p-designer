@@ -1,6 +1,7 @@
 import './style.scss'
 import { useStore } from '../../hooks'
 import { observer } from 'mobx-react-lite'
+import { Link } from 'react-router-dom'
 
 const RelatedProject = observer(() => {
     const { projectsDetails, pattern } = useStore('patternStore')
@@ -36,7 +37,7 @@ const RelatedProject = observer(() => {
                     <div className="pattern__detals_value">{projectsDetails.rating}</div>
                 </div>
             </div>
-            <button>Go to the Project</button>
+            <button><Link to="project">Go to the Project</Link></button>
         </div>
     )
 })

@@ -46,3 +46,13 @@
     height: 17px;
     cursor: pointer;
 }
+.pattern__delete {
+    width: 200px;
+    height: 35px;
+    font-size: 16px;
+    margin: 20px auto;
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+}

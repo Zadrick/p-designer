@@ -4,8 +4,13 @@ import { useStore } from '../../hooks'
 import './style.css'
 
 const PatternDetails = observer(() => {
-    const { pattern, renamePattern, setPatternLifecycle } = useStore('patternStore')
+    const { pattern, renamePattern, setPatternLifecycle, removePattern, getPatternList } = useStore('patternStore')
     const [editPattern, setEditPattern] = useState(false)
+
+    const onDeletePattern = () => {
+        removePattern(pattern.id)
+        getPatternList()
+    }
 
     return (
         <div className='pattern__detals'>
@@ -41,6 +46,7 @@ const PatternDetails = observer(() => {
                     </div>
                 </div>
             </div>
+            <button className='pattern__delete' onClick={onDeletePattern}>delete pattern</button>
         </div>
     )
 })
