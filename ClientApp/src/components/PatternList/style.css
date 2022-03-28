@@ -1,0 +1,51 @@
+.patterns {
+    width: 315px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+.patternList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.patternList span {
+    font-size: 18px;
+    line-height: 18px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #333333;
+    border: 3px solid #333333;
+    box-sizing: border-box;
+    border-radius: 8px;
+    width: 198px;
+    height: 38px;
+    background: #FFFFFF;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.patternList span.active {
+    background: #333 !important;
+    color: #fff !important;
+}
+.button_createPattern {
+    width: 200px;
+    height: 38px;
+    border: 2px solid #333333;
+    box-sizing: border-box;
+    border-radius: 32px;
+    background: #FFFFFF;
+    font-size: 15px;
+    line-height: 22px;
+    color: #333333;
+    margin-top: auto;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
