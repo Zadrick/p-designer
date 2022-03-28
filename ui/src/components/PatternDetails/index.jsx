@@ -4,7 +4,7 @@ import { useStore } from '../../hooks'
 import './style.css'
 
 const PatternDetails = observer(() => {
-    const { pattern, renamePattern } = useStore('patternStore')
+    const { pattern, renamePattern, setPatternLifecycle } = useStore('patternStore')
     const [editPattern, setEditPattern] = useState(false)
 
     return (
@@ -26,7 +26,19 @@ const PatternDetails = observer(() => {
                 </div>
                 <div className='pattern__detals_item'>
                     <div className='pattern__detals_name'>Status:</div>
-                    <div className="pattern__detals_value">Ready to use</div>
+                    <div className="pattern__detals_value">
+                    <select className='setting__select' onChange={e => setPatternLifecycle(Number(e.target.value))}>
+                        {pattern.lifecycleStatusId === 1 ? 
+                        (<>
+                            <option value={1}>Draft</option>
+                            <option value={2}>Ready to use</option>
+                        </>)
+                        : (<>
+                            <option value={2}>Ready to use</option>
+                            <option value={1}>Draft</option>
+                        </>)}
+                    </select>
+                    </div>
                 </div>
             </div>
         </div>

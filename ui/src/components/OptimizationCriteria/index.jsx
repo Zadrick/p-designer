@@ -26,8 +26,6 @@ const OptimizationCriteria = observer(() => {
         setNewCriteria('')
     }
 
-    console.log(pattern);
-
     const deleteCriteria = characteristics => {
         if (characteristics.id === 0) {
             setDeletedNewCharacteristics(characteristics)

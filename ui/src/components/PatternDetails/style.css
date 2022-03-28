@@ -30,12 +30,13 @@
 .pattern__detals_value {
     font-size: 16px;
     line-height: 22px;
-    
     letter-spacing: 0.02em;
     text-decoration-line: underline;
-    
     color: #000000;
-    
+}
+.pattern__detals_value select {
+    border: none;
+    width: 125px;
 }
 .pattern__detals_edit {
     margin-top: 2px;

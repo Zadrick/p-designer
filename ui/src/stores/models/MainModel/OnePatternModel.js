@@ -1,4 +1,5 @@
 import { types } from 'mobx-state-tree';
+import projects from './projectsModel'
 
 const criteriaModel = types.model('criteria', {
     id: types.optional(types.integer, 0),
@@ -7,13 +8,6 @@ const criteriaModel = types.model('criteria', {
     maxValue: types.optional(types.number, 0),
     targetValue: types.optional(types.number, 0),
     isMinimization: types.optional(types.boolean, false),
-})
-
-const projects = types.model('project', {
-    id: types.optional(types.integer, 0),
-    name: types.optional(types.string, ''),
-    patternName: types.optional(types.string, ''),
-    value: types.optional(types.number, 0),
 })
 
 

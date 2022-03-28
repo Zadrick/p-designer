@@ -57,6 +57,14 @@ const Criteria = observer(() => {
         }
     }
 
+    const deleteChanges = () => {
+        setCriteriaName(criteriaDetails.name)
+        setMaxValue(criteriaDetails.maxValue)
+        setMinValue(criteriaDetails.minValue)
+        setInputValue(criteriaDetails.targetValue)
+        setIsMinimization(criteriaDetails.isMinimization)
+    }
+
     return (
         <div className='sidebar__criteria'>
             <h2>Criteria Details</h2>
@@ -147,7 +155,11 @@ const Criteria = observer(() => {
                     </div>
                 </div>
             </div>
-            {isChanged ? (<button onClick={() => onUpdateCriteria()} className='edit__criteria'>Edit Optimization Criteria</button>) : (<></>)}
+            {isChanged ? (
+            <div className='criteri__buttons'>
+                <button onClick={() => deleteChanges()} className='criteri__buttons_delete'>delete changes</button>
+                <button onClick={() => onUpdateCriteria()} className='criteri__buttons_save'>save changes</button>
+            </div>) : (<></>)}
         </div>
     )
 })

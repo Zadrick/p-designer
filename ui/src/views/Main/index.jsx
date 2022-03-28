@@ -13,13 +13,17 @@ import './style.scss';
 const Main = observer(() => {
 
 
-  const { getPattern, isUpdate, putPattern } = useStore('patternStore')
+  const { getPattern, putPattern, activePattern } = useStore('patternStore')
   React.useEffect(() => {
-    getPattern(3)
-  }, [])
+    getPattern(activePattern)
+  }, [activePattern, getPattern])
 
   const onPutPatterns = () => {
     putPattern()
+  }
+
+  const disardChanges = () => {
+    getPattern(activePattern)
   }
 
   return (
@@ -46,7 +50,7 @@ const Main = observer(() => {
           <RelatedProject />
           <div className='sidebar__buttons'>
             <button onClick={onPutPatterns}>Save the Pattern</button>
-            <button>Delete the Pattern</button>
+            <button onClick={disardChanges}>Discard Changes</button>
           </div>
         </div>
       </div>

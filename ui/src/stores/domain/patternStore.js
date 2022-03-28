@@ -1,5 +1,5 @@
 import { types, getSnapshot, applySnapshot } from 'mobx-state-tree'
-import { OnePatternModel, PatternListModel, criteriaModel } from '../models'
+import { OnePatternModel, PatternListModel, criteriaModel, projects } from '../models'
 
 const PatternStore = types
   .model({
@@ -11,13 +11,28 @@ const PatternStore = types
     _createdProjects: types.optional(PatternListModel, []),
     _deletedProjects: types.optional(types.array(types.number, 0), []),
     _criteriaDetails: types.optional(criteriaModel, {}),
+    _projectsDetails: types.optional(projects, {}),
     isUpdate: types.optional(types.boolean, false),
+    activePattern: types.optional(types.number, 1),
+    patternLifecycle: types.optional(types.number, 1)
   })
   .actions(self => {
     const apiV = 'https://localhost:44378/'
 
     const setIsUpdate = boll => {
       applySnapshot(self.isUpdate, boll)
+    }
+
+    const setProjectsDetails = obj => {
+      applySnapshot(self._projectsDetails, obj)
+    }
+
+    const setPatternLifecycle = id => {
+      applySnapshot(self.patternLifecycle, id)
+    }
+    
+    const setActivePettern = id => {
+      self.activePattern = id
     }
 
     const setPatternList = newPatternList => {
@@ -73,7 +88,6 @@ const PatternStore = types
     }
     
     const setCreatedProjects = obj => {
-      console.log(obj);
       applySnapshot(self._createdProjects, [...getSnapshot(self._createdProjects), obj])
       applySnapshot(self._pattern, {...self._pattern, projects: [...getSnapshot(self._pattern.projects), obj]})
     }
@@ -83,6 +97,7 @@ const PatternStore = types
     }
 
     const setDeletedOldProjects = obj => {
+      console.log(obj);
       applySnapshot(self._deletedProjects, [...self._deletedProjects, obj.id])
       applySnapshot(self._pattern, {...self._pattern, projects: self._pattern.projects.filter(item => item.id !== obj.id)})
     }
@@ -119,13 +134,14 @@ const PatternStore = types
       } catch (e) {
         console.log(e)
       }
+      getPatternList()
     }
 
     const putPattern = async () => {
       const obj = {
         id: self._pattern.id,
         name: self._pattern.name,
-        lifecycleStatusId: self._pattern.lifecycleStatusId,
+        lifecycleStatusId: self.patternLifecycle,
         projectValueMin: self._pattern.projectValueMin,
         projectValueMax: self._pattern.projectValueMax,
         projectValueTarget: self._pattern.projectValueTarget,
@@ -135,7 +151,6 @@ const PatternStore = types
         updatedCharacteristics: self._updatedCharacteristics,
         deletedCharacteristics: self._deletedCharacteristics,
       }
-
       try {
         const res = await fetch(`${apiV}api/pattern`, {
           method: 'PUT',
@@ -173,8 +188,11 @@ const PatternStore = types
         setUpdatedNewCharacteristics,
         setUpdatedOldCharacteristics,
         setCreatedCharacteristics,
+        setProjectsDetails,
+        setPatternLifecycle,
         setCreatedProjects,
         setCriteriaDetails,
+        setActivePettern,
         removePattern,
         renamePattern,
         setIsUpdate,
@@ -194,6 +212,9 @@ const PatternStore = types
     get createdCharacteristics() {
       return getSnapshot(self._createdCharacteristics)
     },
+    get projectsDetails() {
+      return getSnapshot(self._projectsDetails)
+    }
   }))
 
 export default PatternStore
