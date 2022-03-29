@@ -5,7 +5,7 @@ namespace p_designer.entities
 {
     public class PDesignerContext : DbContext
     {
-        public DbSet<Aspect> Aspects { get; set; }
+        // public DbSet<Aspect> Aspects { get; set; }
         public DbSet<Characteristic> Characteristics { get; set; }
         public DbSet<Component> Components { get; set; }
         public DbSet<Library> Libraries { get; set; }
