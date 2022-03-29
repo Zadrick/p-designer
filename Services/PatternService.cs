@@ -27,7 +27,7 @@ namespace p_designer.services
                 throw new Exception("Pattern is deleted.");
 
             pattern.Projects = context.Projects.AsNoTracking()
-                .Where(p => p.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted)
+                .Where(p => p.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted && p.PatternId == id)
                 .ProjectToType<ProjectModel.Read.Short>();
 
             return pattern;
