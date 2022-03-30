@@ -5,7 +5,7 @@ namespace p_designer.entities
 {
     public class PDesignerContext : DbContext
     {
-        public DbSet<Aspect> Aspects { get; set; }
+        // public DbSet<Aspect> Aspects { get; set; }
         public DbSet<Characteristic> Characteristics { get; set; }
         public DbSet<Component> Components { get; set; }
         public DbSet<Library> Libraries { get; set; }
@@ -20,12 +20,20 @@ namespace p_designer.entities
 
         public PDesignerContext()
         {
-            Database.EnsureCreated();
+            try
+            {
+                Database.EnsureCreated();
+            }
+            catch(Exception) { }
         }
 
         public PDesignerContext(DbContextOptions<PDesignerContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            try
+            {
+                Database.EnsureCreated();
+            }
+            catch (Exception) { }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -7,7 +7,7 @@ namespace p_designer.entities
     {
         public Pattern()
         {
-            Aspects = new HashSet<Aspect>();
+            AspectLevels = new HashSet<AspectLevel>();
             Characteristics = new HashSet<Characteristic>();
             Projects = new HashSet<Project>();
         }
@@ -26,6 +26,6 @@ namespace p_designer.entities
         public LifecycleStatus LifecycleStatus { get; set; }
         public ICollection<Characteristic> Characteristics { get; set; }
         public ICollection<Project> Projects { get; set; }
-        public ICollection<Aspect> Aspects { get; set; }
+        public ICollection<AspectLevel> AspectLevels { get; set; }
     }
 }

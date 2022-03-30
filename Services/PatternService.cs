@@ -20,17 +20,22 @@ namespace p_designer.services
         {
             var pattern = (await context.Patterns.AsNoTracking()
                 .Include(p => p.Characteristics)
-                .SingleAsync(p => p.Id == id))
-                .Adapt<PatternModel.Read.Long>();
+                .Include(p => p.AspectLevels)
+                .SingleAsync(p => p.Id == id));
+
 
             if (pattern.LifecycleStatusId == (int)LifecycleStatusEnum.Deleted)
                 throw new Exception("Pattern is deleted.");
 
-            pattern.Projects = context.Projects.AsNoTracking()
+            var patternModel = pattern.Adapt<PatternModel.Read.Long>();
+
+            patternModel.Aspects = pattern.AspectLevels.Select(a => a.Id);
+
+            patternModel.Projects = context.Projects.AsNoTracking()
                 .Where(p => p.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted && p.PatternId == id)
                 .ProjectToType<ProjectModel.Read.Short>();
 
-            return pattern;
+            return patternModel;
         }
 
         public async Task<MetaDataModel<PatternModel.Read.Short>> ReadPageAsync(int page, int pageSize)
@@ -53,6 +58,9 @@ namespace p_designer.services
         public async Task UpdateAsync(PatternModel.Update patternModel)
         {
             var updatedPattern = patternModel.Adapt<Pattern>();
+            updatedPattern.AspectLevels = context.AspectLevels
+                .Where(a => patternModel.Aspects.Contains(a.Id))
+                .ToHashSet();
 
             var createdProjects = patternModel
                 .CreatedProjects.Select(p =>
