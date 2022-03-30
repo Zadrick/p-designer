@@ -3,17 +3,10 @@ using p_designer.entities;
 
 namespace p_designer.Common
 {
-    public class MapsterProfile
+    public static class MapsterProfile
     {
-        public void Register()
+        public static void Register()
         {
-            TypeAdapterConfig<int, AspectLevel>
-                .NewConfig()
-                .Map(dest => dest.Id, src => src);
-
-            TypeAdapterConfig<AspectLevel, int>
-                .NewConfig()
-                .Map(dest => dest, src => src.Id);
         }
     }
 }

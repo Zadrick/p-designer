@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using p_designer.Common;
 using p_designer.entities;
 using p_designer.services;
 using Swashbuckle.AspNetCore.SwaggerUI;
@@ -23,6 +24,8 @@ builder.Services.AddSwaggerGen(c =>
     c.CustomSchemaIds(type => type.ToString());
     c.EnableAnnotations();
 });
+
+MapsterProfile.Register();
 
 var app = builder.Build();
 

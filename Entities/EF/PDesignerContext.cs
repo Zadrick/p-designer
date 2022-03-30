@@ -20,12 +20,20 @@ namespace p_designer.entities
 
         public PDesignerContext()
         {
-            Database.EnsureCreated();
+            try
+            {
+                Database.EnsureCreated();
+            }
+            catch(Exception) { }
         }
 
         public PDesignerContext(DbContextOptions<PDesignerContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            try
+            {
+                Database.EnsureCreated();
+            }
+            catch (Exception) { }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
