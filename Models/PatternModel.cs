@@ -16,6 +16,7 @@ namespace p_designer.models
                 public double ProjectValueTarget { get; set; }
                 public IEnumerable<ProjectModel.Read.Short> Projects { get; set; }
                 public IEnumerable<CharacteristicModel.Read.Long> Characteristics { get; set; }
+                public IEnumerable<int> Aspects { get; set; }
             }
 
             public class Short
@@ -43,6 +44,7 @@ namespace p_designer.models
             public IEnumerable<CharacteristicModel.Create> CreatedCharacteristics { get; set; }
             public IEnumerable<CharacteristicModel.Update> UpdatedCharacteristics { get; set; }
             public IEnumerable<int> DeletedCharacteristics { get; set; }
+            public IEnumerable<int> Aspects { get; set; }
         }
     }
 }

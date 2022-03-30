@@ -13,5 +13,6 @@ namespace p_designer.entities
         public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<Component> Components { get; set; }
+        public ICollection<Pattern> Patterns { get; set; }
     }
 }
