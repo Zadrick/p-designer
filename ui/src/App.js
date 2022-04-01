@@ -1,13 +1,14 @@
 import './App.scss';
-import { Main, Project } from './views'
+import { Main, Project, Library } from './views'
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/project" element={<Project />} />
-        <Route exact path="/" element={<Main />} />
+        <Route path="/library" element={<Library />} />
+        <Route path="/project" element={<Project />} />
+        <Route path="/" element={<Main />} />
       </Routes>
     </div>
   );

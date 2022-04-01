@@ -4,6 +4,8 @@ import { PatternList,
         PatternDetails, 
         OptimizationCriteria, 
         ProjectBlueprints, 
+        ModalCreate,
+        SaveComponent,
         DesignAspects, 
         RelatedProject } from '../../components'
 import { useStore } from '../../hooks'
@@ -11,9 +13,56 @@ import { observer } from 'mobx-react-lite'
 import './style.scss';
 
 const Main = observer(() => {
+  const { pattern, 
+    setCreatedProjects, 
+    setDeletedNewProjects,
+    setDeletedOldProjects, 
+    setProjectsDetails, 
+    getPatternList, 
+    postPattern, 
+    patternList, 
+    setActivePettern, 
+    activePattern, 
+    getPattern, 
+    putPattern } = useStore('patternStore')
+  const [isCreateModal, setCreateModal] = React.useState(false)
 
 
-  const { getPattern, putPattern, activePattern } = useStore('patternStore')
+  const addNewPattern = patternName => {
+      postPattern(patternName)
+  }
+
+  const onClickPattern = id => {
+      setActivePettern(id)
+  }
+
+  React.useEffect(() => {
+    getPatternList()
+  }, [])
+
+  const addProject = newItem => {
+    const obj  = {
+        id: 0,
+        name: newItem,
+    }
+    setCreatedProjects(obj)
+}
+
+
+const deleteProject = obj => {
+    if (obj.id === 0) {
+        setDeletedNewProjects(obj)
+    } else {
+        setDeletedOldProjects(obj)
+    }
+}
+
+const editProject = obj => {
+    setProjectsDetails(obj)
+}
+
+
+
   React.useEffect(() => {
     getPattern(activePattern)
   }, [activePattern, getPattern])
@@ -27,13 +76,14 @@ const Main = observer(() => {
   }
 
   return (
+    <>
     <div className='App_main'>
       <header className='main__header'>
         <h2>The MAIN MENU</h2>
         <p>Select the project template</p>
       </header>
       <div className='window'>
-        <PatternList />
+        <PatternList list={patternList} componentName="Templates Palette" buttonName="+ Create New Pattern" activeItem={activePattern} changeActive={onClickPattern} createNewItem={setCreateModal} />
         <main className='main'>
           <h2>Selected Pattern composition</h2>
           <div className='main__content'>
@@ -42,19 +92,19 @@ const Main = observer(() => {
           </div>
           <div div className='main__content'>
             <DesignAspects />
-            <ProjectBlueprints />          
+            <ProjectBlueprints list={pattern.projects} addFunc={addProject} deleteFunc={deleteProject}
+            editFunc={editProject} />      
           </div>
         </main>
         <div className='sidebar'>
           <Criteria />
           <RelatedProject />
-          <div className='sidebar__buttons'>
-            <button onClick={onPutPatterns}>Save the Pattern</button>
-            <button onClick={disardChanges}>Discard Changes</button>
-          </div>
+          <SaveComponent onPutFunc={onPutPatterns} onDisardFunc={disardChanges} />
         </div>
       </div>
     </div>
+    {isCreateModal ? <ModalCreate title="A New Project Pattern" inputName="Pattern Name" saveFunc={addNewPattern} disardFunc={setCreateModal} /> : (<></>)}
+    </>
   )
 })
 

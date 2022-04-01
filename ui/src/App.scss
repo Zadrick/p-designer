@@ -52,3 +52,23 @@
       font-size: 14px;
   }
 }
+.scroll {
+  overflow: auto; 
+  width: 100%;
+}
+::-webkit-scrollbar {
+  margin-left: 15px;
+  width: 5px; /* ширина для вертикального скролла */
+  height: 8px; /* высота для горизонтального скролла */
+  background-color: #FFF;
+  border: 2px solid #C4C4C4;
+  border-radius: 10px;
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+  background-color: #C4C4C4;
+  border: 2px solid #C4C4C4;
+  box-sizing: border-box;
+  border-radius: 10px;
+}

@@ -8,6 +8,7 @@
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 10px 10px 10px 10px rgba(0,0,1,0.5);
+    z-index: 50;
     &__input {
         display: flex;
         justify-content: space-around;

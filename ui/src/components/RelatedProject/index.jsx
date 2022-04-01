@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom'
 const RelatedProject = observer(() => {
     const { projectsDetails, pattern } = useStore('patternStore')
 
-    console.log(projectsDetails);
-
     return (
         <div className='related-project'>
             <h2>Related Project Details</h2>
@@ -37,7 +35,7 @@ const RelatedProject = observer(() => {
                     <div className="pattern__detals_value">{projectsDetails.rating}</div>
                 </div>
             </div>
-            <button><Link to="project">Go to the Project</Link></button>
+            <button><Link to="/project">Go to the Project</Link></button>
         </div>
     )
 })
