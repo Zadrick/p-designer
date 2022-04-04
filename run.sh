@@ -1,4 +1,4 @@
-dotnet api/build/p-designer-api.dll &
+dotnet api/p-designer-api.dll &
 
 nginx -t
 service nginx start
