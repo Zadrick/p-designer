@@ -11,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.CustomSchemaIds(type => Guid.NewGuid().ToString());
+    c.EnableAnnotations();
 });
 
 builder.Services.AddDbContext<PDesignerContext>();
