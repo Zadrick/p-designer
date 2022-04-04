@@ -18,7 +18,7 @@ namespace p_designer.Controllers
         [HttpGet]
         [Route("projects")]
         [SwaggerOperation(Summary = "Получить список проектов")]
-        public async Task<MetaDataModel<ProjectModel.Read.Short>> GetPageAsync([Required]int page, [Required]int pageSize)
+        public async Task<MetaDataModel<ProjectModel.Read.Short>> GetPageAsync([Required] int page, [Required] int pageSize)
         {
             return await projectService.GetPageAsync(page, pageSize);
         }
@@ -26,7 +26,7 @@ namespace p_designer.Controllers
         [HttpGet]
         [Route("project")]
         [SwaggerOperation(Summary = "Получть проект")]
-        public async Task<ProjectModel.Read.Long> ReadAsync([Required]int id)
+        public async Task<ProjectModel.Read.Long> ReadAsync([Required] int id)
         {
             return await projectService.ReadAsync(id);
         }
@@ -50,7 +50,7 @@ namespace p_designer.Controllers
         [HttpDelete]
         [Route("project/remove")]
         [SwaggerOperation(Summary = "Измнеить статус проекта на deleted")]
-        public async Task RemoveAsync([Required]int id)
+        public async Task RemoveAsync([Required] int id)
         {
             await projectService.RemoveAsync(id);
         }
@@ -58,7 +58,7 @@ namespace p_designer.Controllers
         [HttpDelete]
         [Route("project/delete")]
         [SwaggerOperation(Summary = "Удалить проект из базы данных")]
-        public async Task DeleteAsync([Required]int id)
+        public async Task DeleteAsync([Required] int id)
         {
             await projectService.DeleteAsync(id);
         }

@@ -66,7 +66,7 @@ namespace p_designer.Controllers
         [HttpGet]
         [Route("pattern/projects")]
         [SwaggerOperation(Summary = "Получить проекты, принадлежащие паттерну")]
-        public async Task<MetaDataModel<ProjectModel.Read.Short>> GetProjectsAsync([Required]int patternId, [Required]int page, [Required]int pageSize)
+        public async Task<MetaDataModel<ProjectModel.Read.Short>> GetProjectsAsync([Required] int patternId, [Required] int page, [Required] int pageSize)
         {
             return await patternService.GetProjectsAsync(patternId, page, pageSize);
         }

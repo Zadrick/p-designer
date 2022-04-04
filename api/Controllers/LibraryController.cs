@@ -18,7 +18,7 @@ namespace p_designer.Controllers
         [HttpGet]
         [Route("libraries")]
         [SwaggerOperation(Summary = "Получить список библиотек")]
-        public async Task<MetaDataModel<LibraryModel.Read.Short>> GetPageAsync([Required]int page, [Required]int pageSize)
+        public async Task<MetaDataModel<LibraryModel.Read.Short>> GetPageAsync(int page, int pageSize)
         {
             return await libraryService.GetPageAsync(page, pageSize);
         }
@@ -26,7 +26,7 @@ namespace p_designer.Controllers
         [HttpGet]
         [Route("library")]
         [SwaggerOperation(Summary = "Получить библиотеку компонентов")]
-        public async Task<LibraryModel.Read.Long> ReadLibraryAsync([Required]int id)
+        public async Task<LibraryModel.Read.Long> ReadLibraryAsync([Required] int id)
         {
             return await libraryService.ReadAsync(id);
         }
@@ -50,7 +50,7 @@ namespace p_designer.Controllers
         [HttpDelete]
         [Route("library/remove")]
         [SwaggerOperation(Summary = "Изменить статус библиотеки на deleted")]
-        public async Task RemoveAsync([Required]int id)
+        public async Task RemoveAsync([Required] int id)
         {
             await libraryService.RemoveAsync(id);
         }
@@ -58,7 +58,7 @@ namespace p_designer.Controllers
         [HttpDelete]
         [Route("library/delete")]
         [SwaggerOperation(Summary = "Удалить библиотеку из базы данных")]
-        public async Task DeleteAsync([Required]int id)
+        public async Task DeleteAsync([Required] int id)
         {
             await libraryService.DeleteAsync(id);
         }
@@ -66,7 +66,7 @@ namespace p_designer.Controllers
         [HttpGet]
         [Route("library/projects")]
         [SwaggerOperation(Summary = "Получить проекты, в которые импортирована библиотека")]
-        public async Task<MetaDataModel<ProjectModel.Read.Short>> GetProjectsAsync([Required]int libraryId, [Required]int page, [Required]int pageSize)
+        public async Task<MetaDataModel<ProjectModel.Read.Short>> GetProjectsAsync([Required] int libraryId, [Required] int page, [Required] int pageSize)
         {
             return await libraryService.GetProjects(libraryId, page, pageSize);
         }

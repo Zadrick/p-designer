@@ -25,7 +25,7 @@ namespace p_designer.Controllers
         [HttpGet]
         [Route("criterias")]
         [SwaggerOperation(Summary = "Получить список характеристик")]
-        public async Task<MetaDataModel<CriteriaModel.Read.Short>> GetPageAsync([Required]int patternId, [Required] int page, [Required] int pageSize)
+        public async Task<MetaDataModel<CriteriaModel.Read.Short>> GetPageAsync([Required] int patternId, [Required] int page, [Required] int pageSize)
         {
             return await criteriaService.GetPageAsync(patternId, page, pageSize);
         }
@@ -49,7 +49,7 @@ namespace p_designer.Controllers
         [HttpDelete]
         [Route("criteria")]
         [SwaggerOperation(Summary = "Удалить характеристику")]
-        public async Task DeleteAsync([Required]int id)
+        public async Task DeleteAsync([Required] int id)
         {
             await criteriaService.DeleteAsync(id);
         }
