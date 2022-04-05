@@ -18,6 +18,7 @@ namespace p_designer.Entities
         public DbSet<LifecycleStatus> LifecycleStatuses { get; set; }
         public DbSet<AspectLevel> AspectLevels { get; set; }
         public DbSet<ComponentLevel> ComponentLevels { get; set; }
+        public DbSet<ComponentType> ComponentTypes { get; set; }
 
         public PDesignerContext()
         {
@@ -130,9 +131,9 @@ namespace p_designer.Entities
                 c.Property(c => c.Name).HasMaxLength(128);
             });
 
-            modelBuilder.Entity<Component>(c =>
+            modelBuilder.Entity<ComponentType>(c =>
             {
-                c.Property(p => p.LifeCycleStatusId).HasDefaultValue((int)LifecycleStatusEnum.Draft);
+                c.Property(p => p.Name).HasMaxLength(128);
             });
         }
     }

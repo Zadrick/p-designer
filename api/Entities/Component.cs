@@ -20,7 +20,7 @@ namespace p_designer.Entities
         public int LifeCycleStatusId { get; set; }
         [Required]
         public string Name { get; set; }
-        public ComponentType Type { get; set; } // Тип, который содержится в библиотеке
+        public ComponentType Type { get; set; } // Тип должен содержаться в библиотеке
         public LifecycleStatus LifecycleStatus { get; set; }
         public ICollection<AttributeValue> AttributeValues { get; set; }
         public ICollection<AspectLevel> Aspects { get; set; }

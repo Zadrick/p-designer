@@ -84,6 +84,7 @@ namespace p_designer.services
         {
             var pattern = await context.Patterns.FindAsync(id);
             pattern.LifecycleStatusId = (int)LifecycleStatusEnum.Deleted;
+
             var projects = context.Projects.AsNoTracking()
                 .Where(p => p.PatternId == pattern.Id)
                 .AsEnumerable()

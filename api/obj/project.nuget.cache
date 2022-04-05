@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Tg7GImaQmCh+XzWxrbG2IEm+Ock/HnGloavrOvNyr3pnlzFZ5KENoFZKvzFboHs3rtR4BAV4GcK6YaDkm/FGvQ==",
+  "dgSpecHash": "rU3ISEmQ7KnWd5m47XXbVwy7mnKhzi80FTo5QTp98snUva2cxot3l0U27EOfaIDh82tmt3MTvY3mTzyMEo2YhQ==",
   "success": true,
-  "projectFilePath": "C:\\p-designer\\api\\p-designer.csproj",
+  "projectFilePath": "C:\\p-designer\\api\\p-designer-api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Makaraha\\.nuget\\packages\\mapster\\7.3.0\\mapster.7.3.0.nupkg.sha512",
     "C:\\Users\\Makaraha\\.nuget\\packages\\mapster.core\\1.2.0\\mapster.core.1.2.0.nupkg.sha512",
