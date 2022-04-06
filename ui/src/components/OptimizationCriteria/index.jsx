@@ -6,21 +6,24 @@ import './style.scss'
 const OptimizationCriteria = observer(() => {
     const [newCriteria, setNewCriteria] = useState('')
 
-    const { pattern, 
-            setCriteriaDetails,
+    const { setCriteriaDetails,
             setCreatedCharacteristics, 
+            activePattern,
             setDeletedOldCharacteristics, 
+            criteriaList,
             setDeletedNewCharacteristics } = useStore('patternStore')
 
     const addCriteria = () => {
         const newCharacteristics = {
             id: 0,
+            patternId: activePattern,
             name: newCriteria,
             minValue: 0,
             maxValue: 0,
             targetValue: 0,
             isMinimization: true
         }
+        console.log(newCharacteristics)
         setCreatedCharacteristics(newCharacteristics)
         setNewCriteria('')
     }
@@ -43,6 +46,8 @@ const OptimizationCriteria = observer(() => {
         }
     }
 
+    console.log(criteriaList)
+
     return (
         <div className="optimization__criteria">
             <h2>List of Optimization Criteria</h2>
@@ -55,7 +60,7 @@ const OptimizationCriteria = observer(() => {
                     <div className="optimization__criteria_target">Target</div>
                 </div>
                 <div className="scroll">
-                    {pattern.characteristics.map((item, i) => (
+                    {criteriaList.map((item, i) => (
                         <div key={i} className="optimization__criteria_item">
                             <div className="optimization__criteria_name">{item.name}</div>
                             <div className="optimization__criteria_type">{item.isMinimization? 'Minimization' : 'Maxmization'}</div>

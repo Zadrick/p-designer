@@ -2768,19 +2768,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Makaraha\\.nuget\\packages\\": {}
+    "C:\\Users\\Nursultan Chynarbek\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\p-designer\\api\\p-designer.csproj",
+      "projectUniqueName": "C:\\Users\\Nursultan Chynarbek\\Desktop\\p-designer-1\\api\\p-designer.csproj",
       "projectName": "p-designer",
-      "projectPath": "C:\\p-designer\\api\\p-designer.csproj",
-      "packagesPath": "C:\\Users\\Makaraha\\.nuget\\packages\\",
-      "outputPath": "C:\\p-designer\\api\\obj\\",
+      "projectPath": "C:\\Users\\Nursultan Chynarbek\\Desktop\\p-designer-1\\api\\p-designer.csproj",
+      "packagesPath": "C:\\Users\\Nursultan Chynarbek\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Nursultan Chynarbek\\Desktop\\p-designer-1\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Makaraha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Nursultan Chynarbek\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
