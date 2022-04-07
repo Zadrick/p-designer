@@ -21,6 +21,7 @@ builder.Services.AddTransient<LibraryService>();
 builder.Services.AddTransient<CriteriaService>();
 builder.Services.AddTransient<ProjectService>();
 builder.Services.AddTransient<LibraryService>();
+builder.Services.AddTransient<ComponentTypeService>();
 
 MapsterProfile.Register();
 

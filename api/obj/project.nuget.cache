@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "AV+gqMWw6gIJ4xBAnW7bl+gnCMTvDFECA6/G79g76sM5S4R3CZ48o6HEoptta3eCF6Xg5JyDxlIuIFbwEPHz8A==",
   "success": true,
   "projectFilePath": "C:\\Users\\tesla\\dev\\p-designer\\api\\p-designer-api.csproj",
+=======
+  "dgSpecHash": "rU3ISEmQ7KnWd5m47XXbVwy7mnKhzi80FTo5QTp98snUva2cxot3l0U27EOfaIDh82tmt3MTvY3mTzyMEo2YhQ==",
+  "success": true,
+  "projectFilePath": "C:\\p-designer\\api\\p-designer-api.csproj",
+>>>>>>> feature/58
   "expectedPackageFiles": [
     "C:\\Users\\tesla\\.nuget\\packages\\mapster\\7.3.0\\mapster.7.3.0.nupkg.sha512",
     "C:\\Users\\tesla\\.nuget\\packages\\mapster.core\\1.2.0\\mapster.core.1.2.0.nupkg.sha512",

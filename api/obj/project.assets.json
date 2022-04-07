@@ -2768,19 +2768,40 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\tesla\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\Makaraha\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> feature/58
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\tesla\\dev\\p-designer\\api\\p-designer-api.csproj",
       "projectName": "p-designer-api",
       "projectPath": "C:\\Users\\tesla\\dev\\p-designer\\api\\p-designer-api.csproj",
       "packagesPath": "C:\\Users\\tesla\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\tesla\\dev\\p-designer\\api\\obj\\",
+=======
+      "projectUniqueName": "C:\\p-designer\\api\\p-designer-api.csproj",
+      "projectName": "p-designer-api",
+      "projectPath": "C:\\p-designer\\api\\p-designer-api.csproj",
+      "packagesPath": "C:\\Users\\Makaraha\\.nuget\\packages\\",
+      "outputPath": "C:\\p-designer\\api\\obj\\",
+>>>>>>> feature/58
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\tesla\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\Makaraha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> feature/58
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
