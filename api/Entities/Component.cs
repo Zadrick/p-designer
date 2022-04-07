@@ -15,7 +15,7 @@ namespace p_designer.Entities
         public int Id { get; set; }
 
         [ForeignKey(nameof(LifecycleStatus))]
-        public int LifeCycleStatusId { get; set; }
+        public int LifecycleStatusId { get; set; }
 
         [ForeignKey(nameof(ComponentType))]
         public int? ComponentTypeId { get; set; }

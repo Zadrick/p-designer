@@ -8,7 +8,7 @@
             {
                 public string Name { get; set; }
                 public int CategoryId { get; set; }
-                public int ComponentTypeId { get; set; }
+                public int? ComponentTypeId { get; set; }
                 public int LibraryId { get; set; }
             }
 
@@ -16,7 +16,7 @@
             {
                 public int Id { get; set; }
                 public string Name { get; set; }
-                public int TypeId { get; set; }
+                public int? ComponentTypeId { get; set; }
                 public int LifecycleStatusId { get; set; }
             }
         }
@@ -25,7 +25,7 @@
         {
             public string Name { get; set; }
             public int CategoryId { get; set; }
-            public int ComponentTypeId { get; set; }
+            public int? ComponentTypeId { get; set; }
             public int LibraryId { get; set; }
         }
 
@@ -34,7 +34,7 @@
             public int Id { get; set; }
             public string Name { get; set; }
             public int CategoryId { get; set; }
-            public int ComponentTypeId { get; set; }
+            public int? ComponentTypeId { get; set; }
             public int LibraryId { get; set; }
         }
     }

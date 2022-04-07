@@ -62,5 +62,31 @@ namespace p_designer.Controllers
         {
             await projectService.DeleteAsync(id);
         }
+
+        [HttpGet]
+        [Route("project/libraries")]
+        [SwaggerOperation(Summary = "Получить библиотеки, включенные в проект")]
+        public async Task<MetaDataModel<LibraryModel.Read.Short>> GetLibrariesAsync
+            ([Required]int projectId, [Required]int page, [Required]int pageSize)
+        {
+            return await projectService.GetLibrariesAsync(projectId, page, pageSize);
+        }
+
+/*        [HttpPost]
+        [Route("project/library")]
+        [SwaggerOperation(Summary = "Импортировть библиотеку в проект")]
+        public async Task ImportLibraryAsync([Required]int projectId, [Required]int libraryId)
+        {
+
+        }
+
+        [HttpDelete]
+        [Route("project/library")]
+        [SwaggerOperation(Summary = "Убрать библиотеку из проекта")]
+        public async Task RemoveLibraryFromProjectAsync([Required] int projectId, [Required] int libraryId)
+        {
+
+        }*/
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
 using p_designer.common;
 using p_designer.Entities;
 using p_designer.Extensions;
@@ -57,6 +58,33 @@ namespace p_designer.Services
         {
             var project = await context.Projects.FindAsync(id);
             context.Projects.Remove(project);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<MetaDataModel<LibraryModel.Read.Short>> GetLibrariesAsync(int projectId, int page, int pageSize)
+        {
+            var project = await context.Projects.Include(p => p.Libraries)
+                .Where(p => p.Id == projectId)
+                .SingleAsync();
+
+            var data = project.Libraries.Select(l =>
+            {
+                var model = l.Adapt<LibraryModel.Read.Short>();
+                return model;
+            }).AsQueryable();
+
+            var factory = new MetaDataFactory<LibraryModel.Read.Short>(data);
+            return await factory.CreateAsync(page, pageSize);
+        }
+
+        public async Task ImportAsync(int projectId, int libraryId)
+        {
+            var project = await context.Projects.Include(p => p.Libraries)
+                .Where(p => p.Id == projectId)
+                .SingleAsync();
+
+            var lib = await context.Libraries.FindAsync(libraryId);
+            project.Libraries.Add(lib);
             await context.SaveChangesAsync();
         }
     }

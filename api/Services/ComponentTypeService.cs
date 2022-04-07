@@ -56,7 +56,7 @@ namespace p_designer.Services
             var components = compType.Components
                 .Select(c =>
                 {
-                    c.LifeCycleStatusId = (int)LifecycleStatusEnum.Deleted;
+                    c.LifecycleStatusId = (int)LifecycleStatusEnum.Deleted;
                     return c;
                 });
 

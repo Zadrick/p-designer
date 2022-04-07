@@ -66,9 +66,17 @@ namespace p_designer.Controllers
         [HttpGet]
         [Route("library/projects")]
         [SwaggerOperation(Summary = "Получить проекты, в которые импортирована библиотека")]
-        public async Task<MetaDataModel<ProjectModel.Read.Short>> GetProjectsAsync([Required] int libraryId, [Required] int page, [Required] int pageSize)
+        public async Task<MetaDataModel<ProjectModel.Read.Short>> GetProjectsAsync([Required]int libraryId, [Required] int page, [Required] int pageSize)
         {
             return await libraryService.GetProjects(libraryId, page, pageSize);
+        }
+
+        [HttpGet]
+        [Route("library/components")]
+        [SwaggerOperation(Summary = "Получить компоненты, включенные в библиотеку")]
+        public async Task<MetaDataModel<ComponentModel.Read.Short>> GetComponentsAsync([Required]int libraryId, [Required]int page, [Required]int pageSize)
+        {
+            return await libraryService.GetComponentsAsync(libraryId, page, pageSize);
         }
     }
 }

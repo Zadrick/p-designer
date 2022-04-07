@@ -69,5 +69,21 @@ namespace p_designer.Services
             var factory = new MetaDataFactory<ProjectModel.Read.Short>(projects);
             return await factory.CreateAsync(page, pageSize);
         }
+
+        public async Task<MetaDataModel<ComponentModel.Read.Short>> GetComponentsAsync
+            (int libraryId, int page, int pageSize)
+        {
+            var library = await context.Libraries.Include(l => l.Components)
+                .Where(l => l.Id == libraryId).SingleAsync();
+
+            var data = library.Components.Select(c =>
+            {
+                var model = c.Adapt<ComponentModel.Read.Short>();
+                return model;
+            }).AsQueryable();
+
+            var facotry = new MetaDataFactory<ComponentModel.Read.Short>(data);
+            return await facotry.CreateAsync(page, pageSize);
+        }
     }
 }
