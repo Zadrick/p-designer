@@ -2768,19 +2768,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Nursultan Chynarbek\\.nuget\\packages\\": {}
+    "C:\\Users\\tesla\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nursultan Chynarbek\\Desktop\\p-designer-1\\api\\p-designer.csproj",
-      "projectName": "p-designer",
-      "projectPath": "C:\\Users\\Nursultan Chynarbek\\Desktop\\p-designer-1\\api\\p-designer.csproj",
-      "packagesPath": "C:\\Users\\Nursultan Chynarbek\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nursultan Chynarbek\\Desktop\\p-designer-1\\api\\obj\\",
+      "projectUniqueName": "C:\\Users\\tesla\\dev\\p-designer\\api\\p-designer-api.csproj",
+      "projectName": "p-designer-api",
+      "projectPath": "C:\\Users\\tesla\\dev\\p-designer\\api\\p-designer-api.csproj",
+      "packagesPath": "C:\\Users\\tesla\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tesla\\dev\\p-designer\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Nursultan Chynarbek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tesla\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2849,7 +2849,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
