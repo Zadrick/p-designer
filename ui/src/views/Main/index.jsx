@@ -58,20 +58,20 @@ const Main = observer(() => {
         name: newItem,
     }
     setCreatedProjects(obj)
-}
+  }
 
 
-const onDeleteProject = obj => {
-    if (obj.id === 0) {
-        setDeletedNewProjects(obj)
-    } else {
-        setDeletedOldProjects(obj)
-    }
-}
+  const onDeleteProject = obj => {
+      if (obj.id === 0) {
+          setDeletedNewProjects(obj)
+      } else {
+          setDeletedOldProjects(obj)
+      }
+  }
 
-const editProject = obj => {
-    setProjectsDetails(obj)
-}
+  const editProject = obj => {
+      setProjectsDetails(obj)
+  }
 
   React.useEffect(() => {
     getPattern(activePattern)
@@ -98,7 +98,7 @@ const editProject = obj => {
     }
     if(createdProjects.length > 0) {
       createdProjects.forEach(item => {
-        postProject(item)
+        postProject({...item, patternId: activePattern})
       })
     }
     if(deletedProjects.length > 0) {
@@ -123,11 +123,14 @@ const editProject = obj => {
         <p>Select the project template</p>
       </header>
       <div className='window'>
-        <PatternList list={patternList} componentName="Templates Palette" buttonName="+ Create New Pattern" activeItem={activePattern} changeActive={onClickPattern} createNewItem={setCreateModal} />
+        <div className='sidebar'>
+          <PatternList list={patternList} componentName="Templates Palette" buttonName="+ Create New Pattern" activeItem={activePattern} changeActive={onClickPattern} createNewItem={setCreateModal} />
+          <PatternDetails />
+        </div>
         <main className='main'>
           <h2>Selected Pattern composition</h2>
           <div className='main__content'>
-            <PatternDetails />
+            <div width="700px"></div>
             <OptimizationCriteria />
           </div>
           <div div className='main__content'>

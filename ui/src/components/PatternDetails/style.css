@@ -1,6 +1,12 @@
 .pattern__detals {
     display: flex;
     flex-direction: column;
+    width: 245px;
+    padding: 0 30px;
+    margin: auto;
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 15px;
 }
 .pattern__detals h2 {
     margin-top: 0;
@@ -20,7 +26,6 @@
 }
 .pattern__detals_name {
     text-align: left;
-
     margin-left: 10px;
     width: 100px;
     font-size: 15px;
