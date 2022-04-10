@@ -164,9 +164,19 @@ const PatternStore = types
       }
     }
 
-    const getProjects = async () => {
+    const getProjectsAll = async () => {
       try {
         const res = await fetch(`${apiV}api/projects?page=1&pageSize=120`).then(res => res.json())
+
+        console.log(res.data)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    const getProjectsPattern = async patternId => {
+      try {
+        const res = await fetch(`${apiV}api/pattern/projects?patternId=${patternId}&page=1&pageSize=120`).then(res => res.json())
 
         setProjectList(res.data)
       } catch (e) {
@@ -303,7 +313,8 @@ const PatternStore = types
         getProject,
         getCriterias,
         deleteCritetia,
-        getProjects,
+        getProjectsPattern,
+        getProjectsAll,
         postCritetia,
         setDeletedNewProjects,
         setDeletedOldProjects,

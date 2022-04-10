@@ -23,7 +23,7 @@ const OptimizationCriteria = observer(() => {
             targetValue: 0,
             isMinimization: true
         }
-        console.log(newCharacteristics)
+
         setCreatedCharacteristics(newCharacteristics)
         setNewCriteria('')
     }

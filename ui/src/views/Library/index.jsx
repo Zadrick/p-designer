@@ -1,5 +1,14 @@
 import React from 'react'
-import { PatternList, RelatedProject, ModalCreate, ProjectBlueprints, SaveComponent } from '../../components'
+import { PatternList, 
+        RelatedProject, 
+        ModalCreate, 
+        ProjectBlueprints, 
+        SaveComponent, 
+        LibraryDetails, 
+        ListComponents,
+        ComponentDetails,
+        ButtonExpertEstimations,
+        ListTypes } from '../../components'
 import './Style.scss'
 import { Link } from 'react-router-dom'
 import { useStore } from '../../hooks'
@@ -73,25 +82,40 @@ const Library = observer(() => {
                 <p>component library</p>
             </header>
             <div className='window'>
-                <PatternList  list={libraryList} componentName="List of Comp.Libraries" buttonName="+ Add New Library" activeItem={activeLibrary} changeActive={setActiveLibrary} createNewItem={setIsCreate}  />
+                <div className='sidebar'>
+                    <PatternList  list={libraryList} 
+                    componentName="List of Comp.Libraries" 
+                    buttonName="+ Add New Library" 
+                    activeItem={activeLibrary} 
+                    changeActive={setActiveLibrary} 
+                    createNewItem={setIsCreate}  />
+                    <LibraryDetails />
+                </div>
                 <main className='main'>
                     <div className='main__content'>
-                        <div><h2>SINTERING COMPONENTs</h2></div>
-                        <div><h2>SINTERING COMPONENTs</h2></div>
+                        <ListTypes />
+                        <ListComponents />
                     </div>
                     <div className='main__content'>
-                        <div><h2>SINTERING COMPONENTs</h2></div>
-                        <ProjectBlueprints list={libraryProject} addFunc={addProject} deleteFunc={onDeleteProject}
-            editFunc={editProject} isAdd={true} />
+                        <ButtonExpertEstimations />
+                        <ProjectBlueprints list={libraryProject} 
+                                            addFunc={addProject} 
+                                            deleteFunc={onDeleteProject}
+                                            editFunc={editProject} 
+                                            isAdd={true} />
                     </div>
                 </main>
                 <div className='sidebar'>
+                    <ComponentDetails />
                     <RelatedProject />
                     <SaveComponent onPutFunc={saveLibrary} onDisardFunc={disardChangesLibrary} />
                 </div>
             </div>
             <Link to="/project" className="go-back">Go Back</Link>
-            {isCreate ? <ModalCreate title="A New Project Pattern" inputName="Pattern Name" saveFunc={createLibrary} disardFunc={setIsCreate} /> : (<></>)}
+            {isCreate ? <ModalCreate title="A New Project Pattern" 
+                                    inputName="Pattern Name" 
+                                    saveFunc={createLibrary} 
+                                    disardFunc={setIsCreate} /> : (<></>)}
         </div>
     )
 })

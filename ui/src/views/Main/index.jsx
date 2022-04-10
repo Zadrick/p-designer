@@ -30,7 +30,7 @@ const Main = observer(() => {
     putCritetia,
     setActivePettern, 
     activePattern, 
-    getProjects,
+    getProjectsPattern,
     deleteCritetia,
     getPattern, 
     projectList,
@@ -75,9 +75,9 @@ const Main = observer(() => {
 
   React.useEffect(() => {
     getPattern(activePattern)
-    getProjects()
+    getProjectsPattern(activePattern)
     getCriterias(activePattern)
-  }, [activePattern, getCriterias, getPattern, getProjects])
+  }, [activePattern, getCriterias, getPattern, getProjectsPattern])
 
   const onSaveData = () => {
     putPattern()
@@ -107,13 +107,13 @@ const Main = observer(() => {
       })
     }
     getPattern(activePattern)
-    getProjects()
+    getProjectsPattern()
     getCriterias(activePattern)
   }
 
   const disardChanges = () => {
     getPattern(activePattern)
-    getProjects()
+    getProjectsPattern()
     getCriterias(activePattern)
   }
 
