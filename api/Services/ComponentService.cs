@@ -39,8 +39,6 @@ namespace p_designer.Services
             return await factory.CreateAsync(page, pageSize);
         }
 
-
-
         public async Task<int> CreateAsync(ComponentModel.Create model)
         {
             var compType = await context.ComponentTypes.FindAsync(model.ComponentTypeId);

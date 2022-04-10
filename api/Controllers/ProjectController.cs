@@ -62,15 +62,40 @@ namespace p_designer.Controllers
         {
             await projectService.DeleteAsync(id);
         }
-
+        
         [HttpGet]
+        [Route("project/components")]
+        [SwaggerOperation(Summary = "Получить все копмпоненты, добавленные в проект")]
+        public async Task<MetaDataModel<ComponentModel.Read.Short>> GetComponents
+            ([Required]int projectId, [Required]int page, [Required]int pageSize)
+        {
+            return await projectService.GetComponentsAsync(projectId, page, pageSize);
+        }
+
+        [HttpPost]
+        [Route("project/component")]
+        [SwaggerOperation(Summary = "Включить компонент в проект")]
+        public async Task AddComponent([Required]int projectId, [Required]int componentId)
+        {
+            await projectService.AddComponentAsync(projectId, componentId);
+        }
+
+        [HttpDelete]
+        [Route("project/component")]
+        [SwaggerOperation(Summary = "Удалить компонент из проекта")]
+        public async Task RemoveComponent([Required]int projectId, [Required]int componentId)
+        {
+            await projectService.RemoveComponentAsync(projectId, componentId);
+        }
+
+/*        [HttpGet]
         [Route("project/libraries")]
         [SwaggerOperation(Summary = "Получить библиотеки, включенные в проект")]
         public async Task<MetaDataModel<LibraryModel.Read.Short>> GetLibrariesAsync
             ([Required]int projectId, [Required]int page, [Required]int pageSize)
         {
             return await projectService.GetLibrariesAsync(projectId, page, pageSize);
-        }
+        }*/
 
 /*        [HttpPost]
         [Route("project/library")]
