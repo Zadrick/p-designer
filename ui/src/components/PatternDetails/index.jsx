@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useStore } from '../../hooks'
 import './style.css'
 
-const PatternDetails = observer(() => {
+const PatternDetails = observer((props) => {
     const { pattern, renamePattern, setPatternLifecycle, removePattern, getPatternList } = useStore('patternStore')
     const [editPattern, setEditPattern] = useState(false)
 

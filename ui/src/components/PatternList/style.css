@@ -6,11 +6,13 @@
     justify-content: center;
     align-items: center;
     background-color: #fff;
+    width: 300px;
+    border-radius: 8px;
+    margin: 0 10px 0 0;
 }
 .patternList {
     height: 350px;
     display: flex;
-    padding: 0 10px;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;

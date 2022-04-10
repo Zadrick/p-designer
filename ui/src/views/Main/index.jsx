@@ -13,17 +13,29 @@ import { observer } from 'mobx-react-lite'
 import './style.scss';
 
 const Main = observer(() => {
-  const { pattern, 
-    setCreatedProjects, 
+  const { setCreatedProjects, 
     setDeletedNewProjects,
+    updatedCharacteristics,
+    deletedCharacteristics,
+    createdProjects,
     setDeletedOldProjects, 
     setProjectsDetails, 
     getPatternList, 
     postPattern, 
+    postCritetia,
+    postProject,
+    deleteProject,
+    deletedProjects,
     patternList, 
+    putCritetia,
     setActivePettern, 
     activePattern, 
+    getProjects,
+    deleteCritetia,
     getPattern, 
+    projectList,
+    getCriterias,
+    createdCharacteristics,
     putPattern } = useStore('patternStore')
   const [isCreateModal, setCreateModal] = React.useState(false)
 
@@ -46,33 +58,63 @@ const Main = observer(() => {
         name: newItem,
     }
     setCreatedProjects(obj)
-}
+  }
 
 
-const deleteProject = obj => {
-    if (obj.id === 0) {
-        setDeletedNewProjects(obj)
-    } else {
-        setDeletedOldProjects(obj)
-    }
-}
+  const onDeleteProject = obj => {
+      if (obj.id === 0) {
+          setDeletedNewProjects(obj)
+      } else {
+          setDeletedOldProjects(obj)
+      }
+  }
 
-const editProject = obj => {
-    setProjectsDetails(obj)
-}
-
-
+  const editProject = obj => {
+      setProjectsDetails(obj)
+  }
 
   React.useEffect(() => {
     getPattern(activePattern)
-  }, [activePattern, getPattern])
+    getProjects()
+    getCriterias(activePattern)
+  }, [activePattern, getCriterias, getPattern, getProjects])
 
-  const onPutPatterns = () => {
+  const onSaveData = () => {
     putPattern()
+    if(createdCharacteristics.length > 0) {
+      createdCharacteristics.forEach(item => {
+        postCritetia(item)
+      })
+    }
+    if(updatedCharacteristics.length > 0) {
+      updatedCharacteristics.forEach(item => {
+        putCritetia(item)
+      })
+    }
+    if(deletedCharacteristics.length > 0) {
+      deletedCharacteristics.forEach(item => {
+        deleteCritetia(item)
+      })
+    }
+    if(createdProjects.length > 0) {
+      createdProjects.forEach(item => {
+        postProject({...item, patternId: activePattern})
+      })
+    }
+    if(deletedProjects.length > 0) {
+      deletedProjects.forEach(item => {
+        deleteProject(item)
+      })
+    }
+    getPattern(activePattern)
+    getProjects()
+    getCriterias(activePattern)
   }
 
   const disardChanges = () => {
     getPattern(activePattern)
+    getProjects()
+    getCriterias(activePattern)
   }
 
   return (
@@ -83,23 +125,26 @@ const editProject = obj => {
         <p>Select the project template</p>
       </header>
       <div className='window'>
-        <PatternList list={patternList} componentName="Templates Palette" buttonName="+ Create New Pattern" activeItem={activePattern} changeActive={onClickPattern} createNewItem={setCreateModal} />
+        <div className='sidebar'>
+          <PatternList list={patternList} componentName="Templates Palette" buttonName="+ Create New Pattern" activeItem={activePattern} changeActive={onClickPattern} createNewItem={setCreateModal} />
+          <PatternDetails />
+        </div>
         <main className='main'>
           <h2>Selected Pattern composition</h2>
           <div className='main__content'>
-            <PatternDetails />
+            <div className='sidebar'></div>
             <OptimizationCriteria />
           </div>
           <div div className='main__content'>
             <DesignAspects />
-            <ProjectBlueprints list={pattern.projects} addFunc={addProject} deleteFunc={deleteProject}
-            editFunc={editProject} />      
+            <ProjectBlueprints list={projectList} addFunc={addProject} deleteFunc={onDeleteProject}
+            editFunc={editProject} isAdd={true} />      
           </div>
         </main>
         <div className='sidebar'>
           <Criteria />
           <RelatedProject />
-          <SaveComponent onPutFunc={onPutPatterns} onDisardFunc={disardChanges} />
+          <SaveComponent onPutFunc={onSaveData} onDisardFunc={disardChanges} />
         </div>
       </div>
     </div>
