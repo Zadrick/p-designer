@@ -24,7 +24,9 @@ namespace p_designer.Services
 
         public async Task<MetaDataModel<ComponentTypeModel.Read.Short>> GetPageAsync(int libraryId, int page, int pageSize)
         {
-            var data = context.ComponentTypes.Where(c => c.LibraryId == libraryId)
+            var data = context.ComponentTypes
+                .AsNoTracking()
+                .Where(c => c.LibraryId == libraryId)
                 .ProjectToType<ComponentTypeModel.Read.Short>();
 
             var factory = new MetaDataFactory<ComponentTypeModel.Read.Short>(data);
@@ -53,14 +55,6 @@ namespace p_designer.Services
                 .Where(c => c.Id == id)
                 .SingleAsync();
 
-            var components = compType.Components
-                .Select(c =>
-                {
-                    c.LifecycleStatusId = (int)LifecycleStatusEnum.Deleted;
-                    return c;
-                });
-
-            context.UpdateRange(components);
             await context.SaveChangesAsync();
         }
     }

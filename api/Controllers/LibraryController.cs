@@ -71,12 +71,12 @@ namespace p_designer.Controllers
             return await libraryService.GetProjects(libraryId, page, pageSize);
         }
 
-        [HttpGet]
+/*        [HttpGet]
         [Route("library/components")]
         [SwaggerOperation(Summary = "Получить компоненты, включенные в библиотеку")]
         public async Task<MetaDataModel<ComponentModel.Read.Short>> GetComponentsAsync([Required]int libraryId, [Required]int page, [Required]int pageSize)
         {
             return await libraryService.GetComponentsAsync(libraryId, page, pageSize);
-        }
+        }*/
     }
 }

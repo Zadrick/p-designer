@@ -26,6 +26,7 @@ namespace p_designer.Services
             (int projectId, int page, int pageSize)
         {
             var project = await context.Projects.Include(c => c.Components)
+                .AsNoTracking()
                 .Where(p => p.Id == projectId)
                 .SingleAsync();
 

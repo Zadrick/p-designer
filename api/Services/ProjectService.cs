@@ -63,17 +63,11 @@ namespace p_designer.Services
 
         public async Task<MetaDataModel<ComponentModel.Read.Short>> GetComponentsAsync(int projectId, int page, int pageSize)
         {
-            var project = await context.Projects.Include(p => p.Components)
-                .Where(p => p.Id == projectId)
-                .SingleAsync();
-
-            var data = project.Components
-                .Select(c =>
-                {
-                    var model = c.Adapt<ComponentModel.Read.Short>();
-                    return model;
-                }).AsQueryable();
-
+            var data = context.Components
+                .Where(c => c.Projects.Select(p => p.Id).Contains(projectId)
+                && c.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted)
+                .ProjectToType<ComponentModel.Read.Short>();
+             
             var factory = new MetaDataFactory<ComponentModel.Read.Short>(data);
             return await factory.CreateAsync(page, pageSize);
         }
