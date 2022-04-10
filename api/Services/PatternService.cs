@@ -107,7 +107,9 @@ namespace p_designer.services
 
         public async Task<MetaDataModel<ProjectModel.Read.Short>> GetProjectsAsync(int patternId, int page, int pageSie)
         {
-            var projects = context.Projects.Where(p => p.PatternId == patternId && p.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted)
+            var projects = context.Projects
+                .AsNoTracking()
+                .Where(p => p.PatternId == patternId && p.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted)
                 .ProjectToType<ProjectModel.Read.Short>();
 
             var factory = new MetaDataFactory<ProjectModel.Read.Short>(projects);

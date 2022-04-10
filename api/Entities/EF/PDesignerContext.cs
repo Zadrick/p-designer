@@ -117,7 +117,7 @@ namespace p_designer.Entities
             modelBuilder.Entity<Component>(c =>
             {
                 c.Property(c => c.Name).HasMaxLength(128);
-                c.Property(p => p.LifeCycleStatusId).HasDefaultValue((int)LifecycleStatusEnum.Draft);
+                c.Property(p => p.LifecycleStatusId).HasDefaultValue((int)LifecycleStatusEnum.Draft);
             });
 
             modelBuilder.Entity<Library>(l =>

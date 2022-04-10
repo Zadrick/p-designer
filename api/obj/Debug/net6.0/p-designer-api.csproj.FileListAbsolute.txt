@@ -31,10 +31,6 @@ C:\p-designer\api\obj\Debug\net6.0\ref\p-designer-api.dll
 C:\p-designer\api\obj\Debug\net6.0\p-designer-api.pdb
 C:\p-designer\api\bin\Debug\net6.0\appsettings.Development.json
 C:\p-designer\api\bin\Debug\net6.0\appsettings.json
-C:\p-designer\api\bin\Debug\net6.0\build\appsettings.Development.json
-C:\p-designer\api\bin\Debug\net6.0\build\appsettings.json
-C:\p-designer\api\bin\Debug\net6.0\build\p-designer-api.deps.json
-C:\p-designer\api\bin\Debug\net6.0\build\p-designer-api.runtimeconfig.json
 C:\p-designer\api\bin\Debug\net6.0\p-designer-api.exe
 C:\p-designer\api\bin\Debug\net6.0\p-designer-api.deps.json
 C:\p-designer\api\bin\Debug\net6.0\p-designer-api.runtimeconfig.json
