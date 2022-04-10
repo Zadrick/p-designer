@@ -9,13 +9,13 @@ const LibraryStore = types
     activeLibrary: types.optional(types.number, 0)
 })
 .actions(self => {
-    const apiV = 'https://localhost:44326/'
+    const apiV = 'http://localhost:5000/'
 
     const setActiveLibrary = id => {
         self.activeLibrary = id
     }
 
-    const setLibraries = obj => {
+    function setLibraries(obj) {
         applySnapshot(self._libraryList, obj)
     }
 

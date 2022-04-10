@@ -1,8 +1,8 @@
 .pattern__detals {
     display: flex;
     flex-direction: column;
-    width: 245px;
-    padding: 0 30px;
+    width: 240px;
+    padding: 20px 30px;
     margin: auto;
     margin-top: 10px;
     background-color: #fff;
@@ -21,7 +21,7 @@
 .pattern__detals_item {
     display: flex;
     height: 24px;
-    width: 245px;
+    width: 240px;
     border-bottom:0.5px solid #C4C4C4;
 }
 .pattern__detals_name {

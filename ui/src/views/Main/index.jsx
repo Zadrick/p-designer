@@ -113,6 +113,8 @@ const Main = observer(() => {
 
   const disardChanges = () => {
     getPattern(activePattern)
+    getProjects()
+    getCriterias(activePattern)
   }
 
   return (
@@ -130,13 +132,13 @@ const Main = observer(() => {
         <main className='main'>
           <h2>Selected Pattern composition</h2>
           <div className='main__content'>
-            <div width="700px"></div>
+            <div className='sidebar'></div>
             <OptimizationCriteria />
           </div>
           <div div className='main__content'>
             <DesignAspects />
             <ProjectBlueprints list={projectList} addFunc={addProject} deleteFunc={onDeleteProject}
-            editFunc={editProject} />      
+            editFunc={editProject} isAdd={true} />      
           </div>
         </main>
         <div className='sidebar'>

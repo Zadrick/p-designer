@@ -1,5 +1,5 @@
 import React from 'react'
-import { PatternList, RelatedProject, ModalCreate, ProjectBlueprints } from '../../components'
+import { PatternList, RelatedProject, ModalCreate, ProjectBlueprints, SaveComponent } from '../../components'
 import './Style.scss'
 import { Link } from 'react-router-dom'
 import { useStore } from '../../hooks'
@@ -55,6 +55,15 @@ const Library = observer(() => {
         setProjectsDetails(obj)
     }
 
+    const saveLibrary = () => {
+
+    }
+
+    const disardChangesLibrary = () => {
+        getLibray(activeLibrary)
+        getLibraryProjects(activeLibrary)
+    }
+
 
 
     return (
@@ -73,11 +82,12 @@ const Library = observer(() => {
                     <div className='main__content'>
                         <div><h2>SINTERING COMPONENTs</h2></div>
                         <ProjectBlueprints list={libraryProject} addFunc={addProject} deleteFunc={onDeleteProject}
-            editFunc={editProject} />
+            editFunc={editProject} isAdd={true} />
                     </div>
                 </main>
                 <div className='sidebar'>
                     <RelatedProject />
+                    <SaveComponent onPutFunc={saveLibrary} onDisardFunc={disardChangesLibrary} />
                 </div>
             </div>
             <Link to="/project" className="go-back">Go Back</Link>

@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 const PatternList = observer(({ list, componentName, buttonName, activeItem, changeActive, createNewItem }) => {
 
     return (
-        <aside className='sidebar patterns'>
+        <aside className='patterns'>
             <h2>{componentName}</h2>
             <div className='patternList'>
                 {list.map(item => (

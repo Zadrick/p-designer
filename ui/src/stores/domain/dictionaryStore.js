@@ -6,7 +6,7 @@ const dictionaryStore = types
     _aspectLevels: types.optional(types.array(aspectLevelsModel), [])
 })
 .actions(self => {
-    const apiV = 'https://localhost:44326/'
+    const apiV = 'http://localhost:5000/'
 
     const setAspectLevels = obj => {
         applySnapshot(self._aspectLevels, obj)

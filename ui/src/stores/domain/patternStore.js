@@ -19,7 +19,7 @@ const PatternStore = types
     patternLifecycle: types.optional(types.number, 1)
   })
   .actions(self => {
-    const apiV = 'https://localhost:44326/'
+    const apiV = 'http://localhost:5000/'
 
     const setIsUpdate = boll => {
       applySnapshot(self.isUpdate, boll)
