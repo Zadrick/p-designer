@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
 using p_designer.common;
 using p_designer.Entities;
 using p_designer.Extensions;
@@ -59,5 +60,64 @@ namespace p_designer.Services
             context.Projects.Remove(project);
             await context.SaveChangesAsync();
         }
+
+        public async Task<MetaDataModel<ComponentModel.Read.Short>> GetComponentsAsync(int projectId, int page, int pageSize)
+        {
+            var data = context.Components
+                .Where(c => c.Projects.Select(p => p.Id).Contains(projectId)
+                && c.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted)
+                .ProjectToType<ComponentModel.Read.Short>();
+             
+            var factory = new MetaDataFactory<ComponentModel.Read.Short>(data);
+            return await factory.CreateAsync(page, pageSize);
+        }
+
+        public async Task AddComponentAsync(int projectId, int componentId)
+        {
+            var project = await context.Projects.FindAsync(projectId);
+            var component = await context.Components.FindAsync(componentId);
+
+            project.Components.Add(component);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task RemoveComponentAsync(int projectId, int componentId)
+        {
+            var project = await context.Projects.Include(p => p.Components)
+                .Where(p => p.Id == projectId)
+                .SingleAsync();
+
+            var component = project.Components.Where(c => c.Id == componentId)
+                .Single();
+            project.Components.Remove(component);
+            await context.SaveChangesAsync();
+        }
+
+/*        public async Task<MetaDataModel<LibraryModel.Read.Short>> GetLibrariesAsync(int projectId, int page, int pageSize)
+        {
+            var project = await context.Projects.Include(p => p.Libraries)
+                .Where(p => p.Id == projectId)
+                .SingleAsync();
+
+            var data = project.Libraries.Select(l =>
+            {
+                var model = l.Adapt<LibraryModel.Read.Short>();
+                return model;
+            }).AsQueryable();
+
+            var factory = new MetaDataFactory<LibraryModel.Read.Short>(data);
+            return await factory.CreateAsync(page, pageSize);
+        }
+
+        public async Task ImportAsync(int projectId, int libraryId)
+        {
+            var project = await context.Projects.Include(p => p.Libraries)
+                .Where(p => p.Id == projectId)
+                .SingleAsync();
+
+            var lib = await context.Libraries.FindAsync(libraryId);
+            project.Libraries.Add(lib);
+            await context.SaveChangesAsync();
+        }*/
     }
 }

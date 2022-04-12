@@ -19,6 +19,7 @@ namespace p_designer.Services
         public async Task<MetaDataModel<LibraryModel.Read.Short>> GetPageAsync(int page, int pageSize)
         {
             var data = context.Libraries
+                .AsNoTracking()
                 .Where(l => l.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted)
                 .ProjectToType<LibraryModel.Read.Short>();
             var factory = new MetaDataFactory<LibraryModel.Read.Short>(data);
@@ -63,11 +64,22 @@ namespace p_designer.Services
         {
             var projects = context.Projects
                 .Include(p => p.Libraries)
+                .AsNoTracking()
                 .Where(p => p.Libraries.Select(l => l.Id).Contains(libraryId) && p.LifecycleStatusId != (int)LifecycleStatusEnum.Deleted)
                 .ProjectToType<ProjectModel.Read.Short>();
 
             var factory = new MetaDataFactory<ProjectModel.Read.Short>(projects);
             return await factory.CreateAsync(page, pageSize);
+        }
+
+        public async Task<MetaDataModel<ComponentModel.Read.Short>> GetComponentsAsync
+            (int libraryId, int page, int pageSize)
+        {
+            var data = context.Components.Where(c => c.LibraryId == libraryId)
+                .ProjectToType<ComponentModel.Read.Short>();
+
+            var facotry = new MetaDataFactory<ComponentModel.Read.Short>(data);
+            return await facotry.CreateAsync(page, pageSize);
         }
     }
 }
