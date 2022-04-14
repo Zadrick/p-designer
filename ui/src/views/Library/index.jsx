@@ -15,6 +15,7 @@ import { useStore } from '../../hooks'
 import { observer } from 'mobx-react'
 
 const Library = observer(() => {
+    const { getComponentTypes } = useStore('componentTypeStore')
     const { setCreatedProjects, 
             setDeletedNewProjects,
             setDeletedOldProjects, 
@@ -24,7 +25,7 @@ const Library = observer(() => {
             setActiveLibrary, 
             postLibrary, 
             getLibraries, 
-            getLibray,
+            getLibrary,
             libraryProject,
             getLibraryProjects } = useStore('libraryStore')
     const [ isCreate, setIsCreate ] = React.useState(false)
@@ -34,9 +35,10 @@ const Library = observer(() => {
     }, [])
 
     React.useEffect(() => {
-        getLibray(activeLibrary)
+        getLibrary(activeLibrary)
         getLibraryProjects(activeLibrary)
-    }, [activeLibrary, getLibraryProjects, getLibray])
+        getComponentTypes(activeLibrary)
+    }, [activeLibrary, getLibraryProjects, getLibrary, getComponentTypes])
 
 
     const createLibrary = name => {
@@ -69,7 +71,7 @@ const Library = observer(() => {
     }
 
     const disardChangesLibrary = () => {
-        getLibray(activeLibrary)
+        getLibrary(activeLibrary)
         getLibraryProjects(activeLibrary)
     }
 
@@ -112,8 +114,8 @@ const Library = observer(() => {
                 </div>
             </div>
             <Link to="/project" className="go-back">Go Back</Link>
-            {isCreate ? <ModalCreate title="A New Project Pattern" 
-                                    inputName="Pattern Name" 
+            {isCreate ? <ModalCreate title="A New Library" 
+                                    inputName="Library Name" 
                                     saveFunc={createLibrary} 
                                     disardFunc={setIsCreate} /> : (<></>)}
         </div>

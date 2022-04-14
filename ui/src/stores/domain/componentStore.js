@@ -104,13 +104,11 @@ const componentStore = types
     }
 })
 .views(self => ({
-    // eslint-disable-next-line getter-return
     get component() {
-        getSnapshot(self._component)
+        return getSnapshot(self._component)
     },
-    // eslint-disable-next-line getter-return
     get projectComponents() {
-        getSnapshot(self._projectComponents)
+        return getSnapshot(self._projectComponents)
     },
 }))
 

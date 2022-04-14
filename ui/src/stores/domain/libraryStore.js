@@ -38,11 +38,11 @@ const LibraryStore = types
         }
     }
 
-    const getLibray = async id => {
+    const getLibrary = async id => {
         try {
             const res = await fetch(`${apiV}api/library?id=${id}`).then(res => res.json())
     
-            setLibray(res.data)
+            setLibray(res)
         } catch (e) {
             console.log(e)
         }
@@ -96,7 +96,7 @@ const LibraryStore = types
 
     return {
         getLibraries,
-        getLibray,
+        getLibrary,
         postLibrary,
         putLibrary,
         deleteLibrary,

@@ -1,8 +1,14 @@
 import React from 'react'
+import { useStore } from '../../hooks'
 import './Style.scss'
 
 const ListComponents = () => {
+    // const { getProjectComponents } = useStore('componentStore')
     const [newItem, setNewItem] = React.useState('')
+
+    React.useEffect(() => {
+        // getProjectComponents(1)
+    }, [])
 
     const addTypes = () => {
 
@@ -15,7 +21,7 @@ const ListComponents = () => {
     }
     return (
         <div className='list-components'>
-            <h2>List of Types</h2>
+            <h2>List of Components</h2>
             <div className="list-components_content">
                 <div className="optimization__criteria_names">
                     <div className="optimization__criteria_name">Name</div>
